@@ -6,34 +6,6 @@
     
     
     <url>
-        <loc>/about/</loc>
-    </url>
-    
-    <url>
-        <loc>/sitemap.xml</loc>
-    </url>
-    
-    <url>
-        <loc>/search.json</loc>
-    </url>
-    
-    <url>
-        <loc>/theme-setup/</loc>
-    </url>
-    
-    <url>
-        <loc>/index.html</loc>
-    </url>
-    
-    <url>
-        <loc>/404.html</loc>
-    </url>
-    
-    <url>
-        <loc>/tags/</loc>
-    </url>
-    
-    <url>
         <loc>/feed.xml</loc>
     </url>
     
@@ -41,6 +13,38 @@
         <loc>/articles/</loc>
     </url>
     
+    <url>
+        <loc>/theme-setup/</loc>
+    </url>
+    
+    <url>
+        <loc>/tags/</loc>
+    </url>
+    
+    <url>
+        <loc>/about/</loc>
+    </url>
+    
+    <url>
+        <loc>/404.html</loc>
+    </url>
+    
+    <url>
+        <loc>/search.json</loc>
+    </url>
+    
+    <url>
+        <loc>/sitemap.xml</loc>
+    </url>
+    
+    <url>
+        <loc>/index.html</loc>
+    </url>
+    
 
+    
+    <url>
+        <loc>/Useful-Python-command-options/</loc>
+    </url>
     
 </urlset>

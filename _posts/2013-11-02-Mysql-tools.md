@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Shell hot keys
+title: Mysql tools
 tags: [MySQL]
 ---
 总结了常用的MySQL工具:

@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2014-02-24T23:17:44+00:00</updated>
+<updated>2014-02-24T23:34:58+00:00</updated>
 <id>/</id>
 <author>
   <name>zhoufeng</name>
@@ -78,7 +78,7 @@
 
 
 <entry>
-  <title type="html"><![CDATA[Shell hot keys]]></title>
+  <title type="html"><![CDATA[Mysql tools]]></title>
   <link rel="alternate" type="text/html" href="/Mysql-tools/"/>
   <id>/Mysql-tools</id>
   <published>2013-11-02T00:00:00+00:00</published>
@@ -135,7 +135,7 @@ log_slow_queries = /path/slow.log # 定义log位置，注意要有写入的权�
 mysqladmin -uusername -ppass flush-logs
 flush-logs会自动切分binary log ，reopen error log and slow log&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/Mysql-tools/&quot;&gt;Shell hot keys&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on November 02, 2013.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;/Mysql-tools/&quot;&gt;Mysql tools&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on November 02, 2013.&lt;/p&gt;</content>
 </entry>
 
 
@@ -444,6 +444,59 @@ A common pattern is to sort complex objects using some of the object’s indices
 &lt;/ol&gt;
 
   &lt;p&gt;&lt;a href=&quot;/Useful-Python-command-options/&quot;&gt;Useful Python command options&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on June 09, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Vimdiff tips]]></title>
+  <link rel="alternate" type="text/html" href="/vimdiff-tips/"/>
+  <id>/vimdiff-tips</id>
+  <published>2013-01-18T00:00:00+00:00</published>
+  <updated>2013-01-18T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;&lt;strong&gt;Keyboard Shortcuts&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;do - Get changes from other window into the current window.&lt;/p&gt;
+
+&lt;p&gt;dp - Put the changes from current window into the other window.&lt;/p&gt;
+
+&lt;p&gt;]c - Jump to the next change.&lt;/p&gt;
+
+&lt;p&gt;[c - Jump to the previous change.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;:diffu[pdate]&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;recalculate the diff, useful when after making several changes vim’s isn’t showing minimal changes anymore.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;compare to remote file&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;vimdiff /path/to/file scp://user@host:port//path/to/file&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;将svn的diff命令改为vimdiff&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;首先，将下面的脚本保存，假设命名为 /path/to/svndiff&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 配置vimdiff程序的路径&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;DIFF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;vimdiff&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# SVN diff命令会传入两个文件的参数 &lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;LEFT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;RIGHT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 拼接成diff命令所需要的命令格式&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$DIFF&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$LEFT&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$RIGH&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在.subversion/config里：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;diff-cmd &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /path/to/svndiff
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;/vimdiff-tips/&quot;&gt;Vimdiff tips&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on January 18, 2013.&lt;/p&gt;</content>
 </entry>
 
 

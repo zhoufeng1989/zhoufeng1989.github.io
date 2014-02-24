@@ -9,7 +9,7 @@
 		} ,
 	
 		{
-		  "title"      : "Shell hot keys",
+		  "title"      : "Mysql tools",
 		  "category"   : "",
 		  "url"        : "/Mysql-tools/",
 		  "date"       : "2013-11-02 00:00:00 +0000",
@@ -38,6 +38,14 @@
 		  "url"        : "/Useful-Python-command-options/",
 		  "date"       : "2013-06-09 00:00:00 +0000",
 		  "shortdate"  : "June 09, 2013"
+		} ,
+	
+		{
+		  "title"      : "Vimdiff tips",
+		  "category"   : "",
+		  "url"        : "/vimdiff-tips/",
+		  "date"       : "2013-01-18 00:00:00 +0000",
+		  "shortdate"  : "January 18, 2013"
 		} ,
 	
 		{

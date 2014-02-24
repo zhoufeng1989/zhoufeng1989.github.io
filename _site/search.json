@@ -9,6 +9,14 @@
 		} ,
 	
 		{
+		  "title"      : "Shell hot keys",
+		  "category"   : "",
+		  "url"        : "/Mysql-tools/",
+		  "date"       : "2013-11-02 00:00:00 +0000",
+		  "shortdate"  : "November 02, 2013"
+		} ,
+	
+		{
 		  "title"      : "Grep Summary",
 		  "category"   : "",
 		  "url"        : "/Grep-summary/",

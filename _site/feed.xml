@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2014-02-24T13:38:53+00:00</updated>
+<updated>2014-02-24T23:17:44+00:00</updated>
 <id>/</id>
 <author>
   <name>zhoufeng</name>
@@ -74,6 +74,68 @@
 &lt;p&gt;所以在以字符串类型列为筛选条件的时候，还是不要和整数进行比较了。&lt;/p&gt;
 
   &lt;p&gt;&lt;a href=&quot;/MySQL-type-convert/&quot;&gt;MySQL type convert when compare string and integer&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on December 18, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Shell hot keys]]></title>
+  <link rel="alternate" type="text/html" href="/Mysql-tools/"/>
+  <id>/Mysql-tools</id>
+  <published>2013-11-02T00:00:00+00:00</published>
+  <updated>2013-11-02T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;总结了常用的MySQL工具:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mysqldump&lt;/strong&gt;:备份数据库表&lt;/p&gt;
+
+&lt;p&gt;mysqldump常用的一些选项:
+–databases
+–tables
+–where #dump满足条件的数据
+-d –no-data #只dump表结构，不包括数据&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mysql&lt;/strong&gt;:与MySQL交互的命令行工具&lt;/p&gt;
+
+&lt;p&gt;mysql常用的一些选项
+-e 执行sql
+–skip-column-names 去掉列名，只有数据，用于在管道中直接处理数据。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mysqlbinlog&lt;/strong&gt;: 解析MySQL二进制log&lt;/p&gt;
+
+&lt;p&gt;mysqlbinlog –database=db_name \
+–start-date=”yyyy-mm-dd HH:MM:SS” \ 
+–stop-date=”yyyy-mm-dd HH:MM:SS” \
+/path/to/mysql-bin.log &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mysqldumpslow&lt;/strong&gt;:分析慢日志 &lt;/p&gt;
+
+&lt;p&gt;首先得配置my.cnf：
+log_slow_queries = /path/slow.log # 定义log位置，注意要有写入的权限&lt;/p&gt;
+
+&lt;p&gt;具体的使法如下：&lt;/p&gt;
+
+&lt;p&gt;mysqldumpslow -s c -t 40 /path/slow.log
+出来的结果是访问次数最多的40个sql，几个参数大概意思如下：
+-t 显示多少条
+-s 排序，默认是at。c是次数，t是时间，l是lock时间，r是返回结果。如果是ac，at，al，ar则是升序
+-g 可以用正则匹配部分语句&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mysqlsla&lt;/strong&gt;: 分析日志
+-lt 日志类型，如slow,binary
+–sort META，按照META来排序,如c_sum(sql次数),t_sum(总时间，只有slow log支持),t_avg(平均每条sql的执行时间,只有slow log支持)
+–top n,只打印排名前n的数据
+具体见&lt;a href=&quot;http://hackmysql.com/mysqlsla&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;切分慢日志&lt;/strong&gt;
+/bin/mv mysql_slow_log dest_log 
+mysqladmin -uusername -ppass flush-logs
+flush-logs会自动切分binary log ，reopen error log and slow log&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/Mysql-tools/&quot;&gt;Shell hot keys&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on November 02, 2013.&lt;/p&gt;</content>
 </entry>
 
 

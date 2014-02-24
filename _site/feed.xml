@@ -4,13 +4,97 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2014-02-24T07:56:10+00:00</updated>
+<updated>2014-02-24T09:23:19+00:00</updated>
 <id>/</id>
 <author>
   <name>zhoufeng</name>
   <uri>/</uri>
   <email>fengzhou1024@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Grep Summary]]></title>
+  <link rel="alternate" type="text/html" href="/Grep-summary/"/>
+  <id>/Grep-summary</id>
+  <published>2013-09-03T00:00:00+00:00</published>
+  <updated>2013-09-03T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;基本用法是:  &lt;br /&gt;
+&lt;strong&gt;grep [options] PATTERN [FILES]&lt;/strong&gt;  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;options&lt;/strong&gt;&lt;br /&gt;
+常用的&lt;em&gt;options&lt;/em&gt;有:  &lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;-i  匹配时不区别大小写   &lt;/li&gt;
+  &lt;li&gt;-v  不匹配模式&lt;/li&gt;
+  &lt;li&gt;-n  显示行数&lt;/li&gt;
+  &lt;li&gt;-r  递归查找&lt;/li&gt;
+  &lt;li&gt;-l  只显示匹配的字符串所在的文件名,对于查看哪个文件有匹配模式的字符串时有用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;上下文相关:    &lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;-A n after, 显示匹配行以及后面的n行&lt;/li&gt;
+  &lt;li&gt;-B n before, 显示匹配行以及之前的n行&lt;/li&gt;
+  &lt;li&gt;-C n 显示匹配行以及前后n行，等价于 -A n -B n&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;PATTERN&lt;/strong&gt; &lt;br /&gt;
+&lt;em&gt;PATTERN&lt;/em&gt;是指定的正则表达式,为了避免正则表达式被shell展开(如 &lt;code&gt;*&lt;/code&gt;, &lt;code&gt;[&lt;/code&gt;, &lt;code&gt;]&lt;/code&gt;等),比较好的做法是给正则表达式加上引号。  如:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;grep &lt;span class=&quot;s1&quot;&gt;&amp;#39;*cat*&amp;#39;&lt;/span&gt; a.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;grep的正则表达式属于POSIX规范的&lt;a href=&quot;http://www.regular-expressions.info/posix.html&quot;&gt;BRE&lt;/a&gt;流派,字符组(&lt;code&gt;[]&lt;/code&gt;)、锚点(&lt;code&gt;^&lt;/code&gt;(匹配行首)、&lt;code&gt;$&lt;/code&gt;(匹配行尾)、&lt;code&gt;\&amp;lt;&lt;/code&gt;、&lt;code&gt;\&amp;gt;&lt;/code&gt;(匹配单词的起始和结束位置))都无需转义，但是量词中，除了&lt;code&gt;*&lt;/code&gt;以外, 其他量词(&lt;code&gt;+&lt;/code&gt;, &lt;code&gt;?&lt;/code&gt;, &lt;code&gt;{n, m}&lt;/code&gt;)都需要转义才能使用。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# 匹配文件a.txt中含有单个数字的行，使用POSIX字符组   &lt;/span&gt;
+grep &lt;span class=&quot;s1&quot;&gt;&amp;#39;[[:digit:]]&amp;#39;&lt;/span&gt; a.txt
+&lt;span class=&quot;c&quot;&gt;# 匹配文件a.txt中能够匹配单词hello的行&lt;/span&gt;
+grep &lt;span class=&quot;s1&quot;&gt;&amp;#39;\&amp;lt;hello\&amp;gt;&amp;#39;&lt;/span&gt; a.txt
+&lt;span class=&quot;c&quot;&gt;# 匹配文件a.txt中含有多个连续字母a的行&lt;/span&gt;
+grep &lt;span class=&quot;err&quot;&gt;&amp;#39;&lt;/span&gt;a&lt;span class=&quot;se&quot;&gt;\{&lt;/span&gt;2,&lt;span class=&quot;se&quot;&gt;\}&lt;/span&gt; a.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;grep支持多选结构，但是必须转义&lt;code&gt;(&lt;/code&gt;、&lt;code&gt;|&lt;/code&gt;、&lt;code&gt;)&lt;/code&gt;,捕获分组的记法是 &lt;code&gt;\1&lt;/code&gt;,&lt;code&gt;\2&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;如何匹配tab字符&lt;/strong&gt; &lt;br /&gt;
+&lt;em&gt;POSIX regular expression&lt;/em&gt;没有将&lt;em&gt;tab&lt;/em&gt;映射为&lt;em&gt;\t&lt;/em&gt;,&lt;em&gt;grep&lt;/em&gt;中如何搜索&lt;em&gt;tab&lt;/em&gt;呢?   &lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;使用&lt;em&gt;perl&lt;/em&gt;风格的正则表达式    &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    grep -P &lt;span class=&quot;s1&quot;&gt;&amp;#39;\t&amp;#39;&lt;/span&gt; a.txt
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;使用&lt;code&gt;echo&lt;/code&gt;直接输出的tab     &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    grep &lt;span class=&quot;s2&quot;&gt;&amp;quot;$(echo -ne \\t)&amp;quot;&lt;/span&gt; a.txt
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;CTRL+V tab: CTRL+V 使接下来的输入的字符失去特殊意义&lt;/li&gt;
+  &lt;li&gt;如果用的是&lt;em&gt;Bash shell&lt;/em&gt;, 还可以用&lt;a href=&quot;http://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html#ANSI_002dC-Quoting&quot;&gt;ansi c quoting&lt;/a&gt;这个特性&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    grep &lt;span class=&quot;s1&quot;&gt;$&amp;#39;\t&amp;#39;&lt;/span&gt; a.txt
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;/Grep-summary/&quot;&gt;Grep Summary&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on September 03, 2013.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>

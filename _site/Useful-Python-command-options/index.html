@@ -125,140 +125,148 @@
       <div class="entry-content">
         <h1 id="useful-python-command-options">Useful Python command options</h1>
 <ol>
-  <li>
-    <p><strong>-c command</strong>: specify the command to execute, This terminates the option list(following options are passed as arguments to the command).    </p>
+  <li><strong>-c command</strong>: specify the command to execute, This terminates the option list(following options are passed as arguments to the command).    </li>
+</ol>
 
-    <p><code>
-$ python --version           
-=&gt; Python 2.7.2
-$ python -c 'import sys; print sys.argv' --version
-=&gt; ['-c', '--version'] # --version is passed as argument
-</code></p>
-  </li>
+<div class="highlight"><pre><code class="bash">    <span class="nv">$ </span>python --version           
+    <span class="o">=</span>&gt; Python 2.7.2
+    <span class="nv">$ </span>python -c <span class="s1">&#39;import sys; print sys.argv&#39;</span> --version
+    <span class="o">=</span>&gt; <span class="o">[</span><span class="s1">&#39;-c&#39;</span>, <span class="s1">&#39;--version&#39;</span><span class="o">]</span> <span class="c"># --version is passed as argument</span>
+    
+</code></pre></div>
+
+<ol>
   <li>
     <p><strong>-i</strong>: When a script is passed as first argument or the -c option is used, enter interactive mode after executing the script or the command. It does not read the $PYTHONSTARTUP file.This can be useful to inspect global variables or a stack trace when a script raises an exception. </p>
 
     <p>for example, we hava a Python script, called test.py:</p>
-
-    <pre><code>x = 1
-try:
-    raise KeyError('key error here!')
-except KeyError, e:
-    pass
-</code></pre>
-
-    <p>then execute:</p>
-
-    <pre><code>$ python -i test.py
-&gt;&gt;&gt; print x
-1
-&gt;&gt;&gt; print e
-KeyError('key error here!',)
-</code></pre>
-  </li>
-  <li>
-    <p><strong>-m module_name</strong>: Searches sys.path for the named module and runs the corresponding .py file as a script.
- for example:   </p>
-
-    <p><strong>calendar</strong>:</p>
-
-    <pre><code> $ python -m calendar  # shows the calendar of current year
- $ python -m calendar y m  # shows the calendar of the month m in year y
- $ python -m calendar -h # -h option for more helps
-</code></pre>
-
-    <p><strong>zipfile</strong>:</p>
-
-    <pre><code> $ python -m zipfile
-  Usage:
-     zipfile.py -l zipfile.zip        # Show listing of a zipfile
-     zipfile.py -t zipfile.zip        # Test if a zipfile is valid
-     zipfile.py -e zipfile.zip target # Extract zipfile into target dir
-     zipfile.py -c zipfile.zip src ... # Create zipfile from sources
-</code></pre>
-
-    <p><strong>JSON</strong>:</p>
-
-    <pre><code> $ echo '{"a":"b", "c": "d"}' | python -m 'json.tool'
- {
-     "a": "b", 
-     "c": "d"
- }
-</code></pre>
-
-    <p><strong>http server</strong>: start a http server in current directory, convenient to share files.</p>
-
-    <pre><code> $ python -m 'SimpleHTTPServer' 1234
- Serving HTTP on 0.0.0.0 port 1234 ...  also an CGI version:
-
- $ python -m CGIHTTPServer 1234
-</code></pre>
-
-    <p><strong>SMPT server</strong>:</p>
-
-    <pre><code> $ python -m smtpd -n -c DebuggingServer localhost:8025
-</code></pre>
-
-    <p><strong>pydoc</strong>:</p>
-
-    <pre><code> $ python -m pydoc
- pydoc - the Python documentation tool
-
- pydoc.py &lt;name&gt; ...
-     Show text documentation on something.  &lt;name&gt; may be the name of a
-     Python keyword, topic, function, module, or package, or a dotted
-     reference to a class or function within a module or module in a
-     package.  
-     If &lt;name&gt; contains a '/', it is used as the path to a
-     Python source file to document. If name is 'keywords', 'topics',
-     or 'modules', a listing of these things is displayed.
-
- pydoc.py -k &lt;keyword&gt; #maybe slow
-     Search for a keyword in the synopsis lines of all available modules.
-
- pydoc.py -p &lt;port&gt;  # only for localhost
-     Start an HTTP server on the given port on the local machine.
-
- pydoc.py -g
-     Pop up a graphical interface for finding and serving documentation.
-
- pydoc.py -w &lt;name&gt; ...
-     Write out the HTML documentation for a module to a file in the current
-      directory.  If &lt;name&gt; contains a '/', it is treated as a filename; if
-     it names a directory, documentation is written for all the contents.
-</code></pre>
-
-    <p><strong>pdb</strong>:debug python programes step by step</p>
-
-    <pre><code> $ python -m pdb scripname [arg] ... 
-</code></pre>
-
-    <p><strong>pstats</strong>: interactive profile statistics browser   </p>
-
-    <pre><code> $ python -m pstats
-</code></pre>
-
-    <p><strong>doctest</strong>:   </p>
-
-    <pre><code> $ python -m doctest scriptname
-</code></pre>
-
-    <p><strong>timeit</strong>:</p>
-
-    <pre><code> $ python -m timeit
-</code></pre>
-
-    <p><strong>filecmp</strong>: compare two directories:</p>
-
-    <pre><code> $ python -m filecmp dir1 dir2
-</code></pre>
-
-    <p>At last , <strong>the Zen of Python</strong>:</p>
-
-    <pre><code> $ python -m this
-</code></pre>
   </li>
 </ol>
+
+<div class="highlight"><pre><code class="python">    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s">&#39;key error here!&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">pass</span>
+    
+</code></pre></div>
+
+<pre><code>then execute:    
+</code></pre>
+
+<div class="highlight"><pre><code class="bash">    <span class="nv">$ </span>python -i test.py
+    &gt;&gt;&gt; print x
+    1
+    &gt;&gt;&gt; print e
+    KeyError<span class="o">(</span><span class="s1">&#39;key error here!&#39;</span>,<span class="o">)</span>
+    
+</code></pre></div>
+
+<ol>
+  <li><strong>-m module_name</strong>: Searches sys.path for the named module and runs the corresponding .py file as a script.
+ for example:   </li>
+</ol>
+
+<div class="highlight"><pre><code class="bash">    calendar:
+
+    <span class="nv">$ </span>python -m calendar  <span class="c"># shows the calendar of current year</span>
+    <span class="nv">$ </span>python -m calendar y m  <span class="c"># shows the calendar of the month m in year y</span>
+    <span class="nv">$ </span>python -m calendar -h <span class="c"># -h option for more helps</span>
+    
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">    zipfile:
+
+    <span class="nv">$ </span>python -m zipfile
+     Usage:
+        zipfile.py -l zipfile.zip        <span class="c"># Show listing of a zipfile</span>
+        zipfile.py -t zipfile.zip        <span class="c"># Test if a zipfile is valid</span>
+        zipfile.py -e zipfile.zip target <span class="c"># Extract zipfile into target dir</span>
+        zipfile.py -c zipfile.zip src ... <span class="c"># Create zipfile from sources</span>
+    
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">    json
+
+    <span class="nv">$ </span><span class="nb">echo</span> <span class="s1">&#39;{&quot;a&quot;:&quot;b&quot;, &quot;c&quot;: &quot;d&quot;}&#39;</span> <span class="p">|</span> python -m <span class="s1">&#39;json.tool&#39;</span>
+    <span class="o">{</span>
+        <span class="s2">&quot;a&quot;</span>: <span class="s2">&quot;b&quot;</span>, 
+        <span class="s2">&quot;c&quot;</span>: <span class="s2">&quot;d&quot;</span>
+    <span class="o">}</span>
+    
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">    http server: start a http server in current directory, convenient to share files.
+
+    <span class="nv">$ </span>python -m <span class="s1">&#39;SimpleHTTPServer&#39;</span> 1234
+    Serving HTTP on 0.0.0.0 port 1234 ...
+
+    also an CGI version:
+    
+    <span class="nv">$ </span>python -m CGIHTTPServer 1234
+    
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">    pydoc:
+
+    <span class="nv">$ </span>python -m pydoc
+    pydoc - the Python documentation tool
+
+    pydoc.py &lt;name&gt; ...
+        Show text documentation on something.  &lt;name&gt; may be the name of a
+        Python keyword, topic, <span class="k">function</span>, module, or package, or a dotted
+        reference to a class or <span class="k">function </span>within a module or module in a
+        package.  
+        If &lt;name&gt; contains a <span class="s1">&#39;/&#39;</span>, it is used as the path to a
+        Python <span class="nb">source </span>file to document. If name is <span class="s1">&#39;keywords&#39;</span>, <span class="s1">&#39;topics&#39;</span>,
+        or <span class="s1">&#39;modules&#39;</span>, a listing of these things is displayed.
+
+    pydoc.py -k &lt;keyword&gt; <span class="c">#maybe slow</span>
+        Search <span class="k">for </span>a keyword in the synopsis lines of all available modules.
+
+    pydoc.py -p &lt;port&gt;  <span class="c"># only for localhost</span>
+        Start an HTTP server on the given port on the <span class="nb">local </span>machine.
+
+    pydoc.py -g
+        Pop up a graphical interface <span class="k">for </span>finding and serving documentation.
+
+    pydoc.py -w &lt;name&gt; ...
+        Write out the HTML documentation <span class="k">for </span>a module to a file in the current
+         directory.  If &lt;name&gt; contains a <span class="s1">&#39;/&#39;</span>, it is treated as a filename<span class="p">;</span> <span class="k">if</span>
+<span class="k">        </span>it names a directory, documentation is written <span class="k">for </span>all the contents.
+    
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">    pdb:debug python programes step by step
+
+    <span class="nv">$ </span>python -m pdb scripname <span class="o">[</span>arg<span class="o">]</span> ... 
+    
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">    doctest:
+
+    <span class="nv">$ </span>python -m doctest scriptname
+    
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">    timeit:
+
+    <span class="nv">$ </span>python -m timeit
+    
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">    filecmp: compare two directories:
+
+    <span class="nv">$ </span>python -m filecmp dir1 dir2
+    
+</code></pre></div>
+
+<pre><code>At last , the Zen of Python:
+</code></pre>
+
+<div class="highlight"><pre><code class="bash">    <span class="nv">$ </span>python -m this
+    
+</code></pre></div>
 
 <h3 id="resources">resources:</h3>
 <ol>
@@ -272,6 +280,8 @@ KeyError('key error here!',)
     </div><!-- /.entry-wrapper -->
     <nav class="pagination" role="navigation">
       
+      
+        <a href="/test/" class="btn" title="test">Next article</a>
       
     </nav><!-- /.pagination -->
   </article>

@@ -4,13 +4,54 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2014-02-24T06:57:31+00:00</updated>
+<updated>2014-02-24T07:56:10+00:00</updated>
 <id>/</id>
 <author>
   <name>zhoufeng</name>
   <uri>/</uri>
   <email>fengzhou1024@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[test]]></title>
+  <link rel="alternate" type="text/html" href="/test/"/>
+  <id>/test</id>
+  <published>2013-06-10T00:00:00+00:00</published>
+  <updated>2013-06-10T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;useful-python-command-options&quot;&gt;Useful Python command options&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;-c command&lt;/strong&gt;: specify the command to execute, This terminates the option list(following options are passed as arguments to the command).    &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python --version           
+    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; Python 2.7.2
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -c &lt;span class=&quot;s1&quot;&gt;&amp;#39;import sys; print sys.argv&amp;#39;&lt;/span&gt; --version
+    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;--version&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# --version is passed as argument&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;test
+&lt;strong&gt;for example&lt;/strong&gt;, we hava a Python script, called test.py:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;ne&quot;&gt;KeyError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;key error here!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;ne&quot;&gt;KeyError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;/test/&quot;&gt;test&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on June 10, 2013.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -26,140 +67,148 @@
   </author>
   <content type="html">&lt;h1 id=&quot;useful-python-command-options&quot;&gt;Useful Python command options&lt;/h1&gt;
 &lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;-c command&lt;/strong&gt;: specify the command to execute, This terminates the option list(following options are passed as arguments to the command).    &lt;/p&gt;
+  &lt;li&gt;&lt;strong&gt;-c command&lt;/strong&gt;: specify the command to execute, This terminates the option list(following options are passed as arguments to the command).    &lt;/li&gt;
+&lt;/ol&gt;
 
-    &lt;p&gt;&lt;code&gt;
-$ python --version           
-=&amp;gt; Python 2.7.2
-$ python -c &#39;import sys; print sys.argv&#39; --version
-=&amp;gt; [&#39;-c&#39;, &#39;--version&#39;] # --version is passed as argument
-&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python --version           
+    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; Python 2.7.2
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -c &lt;span class=&quot;s1&quot;&gt;&amp;#39;import sys; print sys.argv&amp;#39;&lt;/span&gt; --version
+    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;--version&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# --version is passed as argument&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;-i&lt;/strong&gt;: When a script is passed as first argument or the -c option is used, enter interactive mode after executing the script or the command. It does not read the $PYTHONSTARTUP file.This can be useful to inspect global variables or a stack trace when a script raises an exception. &lt;/p&gt;
 
     &lt;p&gt;for example, we hava a Python script, called test.py:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt;x = 1
-try:
-    raise KeyError(&#39;key error here!&#39;)
-except KeyError, e:
-    pass
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;then execute:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt;$ python -i test.py
-&amp;gt;&amp;gt;&amp;gt; print x
-1
-&amp;gt;&amp;gt;&amp;gt; print e
-KeyError(&#39;key error here!&#39;,)
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;-m module_name&lt;/strong&gt;: Searches sys.path for the named module and runs the corresponding .py file as a script.
- for example:   &lt;/p&gt;
-
-    &lt;p&gt;&lt;strong&gt;calendar&lt;/strong&gt;:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m calendar  # shows the calendar of current year
- $ python -m calendar y m  # shows the calendar of the month m in year y
- $ python -m calendar -h # -h option for more helps
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;strong&gt;zipfile&lt;/strong&gt;:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m zipfile
-  Usage:
-     zipfile.py -l zipfile.zip        # Show listing of a zipfile
-     zipfile.py -t zipfile.zip        # Test if a zipfile is valid
-     zipfile.py -e zipfile.zip target # Extract zipfile into target dir
-     zipfile.py -c zipfile.zip src ... # Create zipfile from sources
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;strong&gt;JSON&lt;/strong&gt;:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ echo &#39;{&quot;a&quot;:&quot;b&quot;, &quot;c&quot;: &quot;d&quot;}&#39; | python -m &#39;json.tool&#39;
- {
-     &quot;a&quot;: &quot;b&quot;, 
-     &quot;c&quot;: &quot;d&quot;
- }
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;strong&gt;http server&lt;/strong&gt;: start a http server in current directory, convenient to share files.&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m &#39;SimpleHTTPServer&#39; 1234
- Serving HTTP on 0.0.0.0 port 1234 ...  also an CGI version:
-
- $ python -m CGIHTTPServer 1234
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;strong&gt;SMPT server&lt;/strong&gt;:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m smtpd -n -c DebuggingServer localhost:8025
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;strong&gt;pydoc&lt;/strong&gt;:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m pydoc
- pydoc - the Python documentation tool
-
- pydoc.py &amp;lt;name&amp;gt; ...
-     Show text documentation on something.  &amp;lt;name&amp;gt; may be the name of a
-     Python keyword, topic, function, module, or package, or a dotted
-     reference to a class or function within a module or module in a
-     package.  
-     If &amp;lt;name&amp;gt; contains a &#39;/&#39;, it is used as the path to a
-     Python source file to document. If name is &#39;keywords&#39;, &#39;topics&#39;,
-     or &#39;modules&#39;, a listing of these things is displayed.
-
- pydoc.py -k &amp;lt;keyword&amp;gt; #maybe slow
-     Search for a keyword in the synopsis lines of all available modules.
-
- pydoc.py -p &amp;lt;port&amp;gt;  # only for localhost
-     Start an HTTP server on the given port on the local machine.
-
- pydoc.py -g
-     Pop up a graphical interface for finding and serving documentation.
-
- pydoc.py -w &amp;lt;name&amp;gt; ...
-     Write out the HTML documentation for a module to a file in the current
-      directory.  If &amp;lt;name&amp;gt; contains a &#39;/&#39;, it is treated as a filename; if
-     it names a directory, documentation is written for all the contents.
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;strong&gt;pdb&lt;/strong&gt;:debug python programes step by step&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m pdb scripname [arg] ... 
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;strong&gt;pstats&lt;/strong&gt;: interactive profile statistics browser   &lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m pstats
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;strong&gt;doctest&lt;/strong&gt;:   &lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m doctest scriptname
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;strong&gt;timeit&lt;/strong&gt;:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m timeit
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;&lt;strong&gt;filecmp&lt;/strong&gt;: compare two directories:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m filecmp dir1 dir2
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;At last , &lt;strong&gt;the Zen of Python&lt;/strong&gt;:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ python -m this
-&lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;ne&quot;&gt;KeyError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;key error here!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;ne&quot;&gt;KeyError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code&gt;then execute:    
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -i test.py
+    &amp;gt;&amp;gt;&amp;gt; print x
+    1
+    &amp;gt;&amp;gt;&amp;gt; print e
+    KeyError&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;key error here!&amp;#39;&lt;/span&gt;,&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;-m module_name&lt;/strong&gt;: Searches sys.path for the named module and runs the corresponding .py file as a script.
+ for example:   &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    calendar:
+
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m calendar  &lt;span class=&quot;c&quot;&gt;# shows the calendar of current year&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m calendar y m  &lt;span class=&quot;c&quot;&gt;# shows the calendar of the month m in year y&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m calendar -h &lt;span class=&quot;c&quot;&gt;# -h option for more helps&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    zipfile:
+
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m zipfile
+     Usage:
+        zipfile.py -l zipfile.zip        &lt;span class=&quot;c&quot;&gt;# Show listing of a zipfile&lt;/span&gt;
+        zipfile.py -t zipfile.zip        &lt;span class=&quot;c&quot;&gt;# Test if a zipfile is valid&lt;/span&gt;
+        zipfile.py -e zipfile.zip target &lt;span class=&quot;c&quot;&gt;# Extract zipfile into target dir&lt;/span&gt;
+        zipfile.py -c zipfile.zip src ... &lt;span class=&quot;c&quot;&gt;# Create zipfile from sources&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    json
+
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;{&amp;quot;a&amp;quot;:&amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;: &amp;quot;d&amp;quot;}&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; python -m &lt;span class=&quot;s1&quot;&gt;&amp;#39;json.tool&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;, 
+        &lt;span class=&quot;s2&quot;&gt;&amp;quot;c&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;d&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    http server: start a http server in current directory, convenient to share files.
+
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m &lt;span class=&quot;s1&quot;&gt;&amp;#39;SimpleHTTPServer&amp;#39;&lt;/span&gt; 1234
+    Serving HTTP on 0.0.0.0 port 1234 ...
+
+    also an CGI version:
+    
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m CGIHTTPServer 1234
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    pydoc:
+
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m pydoc
+    pydoc - the Python documentation tool
+
+    pydoc.py &amp;lt;name&amp;gt; ...
+        Show text documentation on something.  &amp;lt;name&amp;gt; may be the name of a
+        Python keyword, topic, &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;, module, or package, or a dotted
+        reference to a class or &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;within a module or module in a
+        package.  
+        If &amp;lt;name&amp;gt; contains a &lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;, it is used as the path to a
+        Python &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;file to document. If name is &lt;span class=&quot;s1&quot;&gt;&amp;#39;keywords&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;topics&amp;#39;&lt;/span&gt;,
+        or &lt;span class=&quot;s1&quot;&gt;&amp;#39;modules&amp;#39;&lt;/span&gt;, a listing of these things is displayed.
+
+    pydoc.py -k &amp;lt;keyword&amp;gt; &lt;span class=&quot;c&quot;&gt;#maybe slow&lt;/span&gt;
+        Search &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;a keyword in the synopsis lines of all available modules.
+
+    pydoc.py -p &amp;lt;port&amp;gt;  &lt;span class=&quot;c&quot;&gt;# only for localhost&lt;/span&gt;
+        Start an HTTP server on the given port on the &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;machine.
+
+    pydoc.py -g
+        Pop up a graphical interface &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;finding and serving documentation.
+
+    pydoc.py -w &amp;lt;name&amp;gt; ...
+        Write out the HTML documentation &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;a module to a file in the current
+         directory.  If &amp;lt;name&amp;gt; contains a &lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;, it is treated as a filename&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;        &lt;/span&gt;it names a directory, documentation is written &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;all the contents.
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    pdb:debug python programes step by step
+
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m pdb scripname &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;arg&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; ... 
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    doctest:
+
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m doctest scriptname
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    timeit:
+
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m timeit
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    filecmp: compare two directories:
+
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m filecmp dir1 dir2
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code&gt;At last , the Zen of Python:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python -m this
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;resources&quot;&gt;resources:&lt;/h3&gt;
 &lt;ol&gt;

@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2014-02-24T09:23:19+00:00</updated>
+<updated>2014-02-24T10:18:07+00:00</updated>
 <id>/</id>
 <author>
   <name>zhoufeng</name>
@@ -302,6 +302,71 @@ grep &lt;span class=&quot;err&quot;&gt;&amp;#39;&lt;/span&gt;a&lt;span class=&qu
 &lt;/ol&gt;
 
   &lt;p&gt;&lt;a href=&quot;/Useful-Python-command-options/&quot;&gt;Useful Python command options&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on June 09, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Shell hot keys]]></title>
+  <link rel="alternate" type="text/html" href="/Shell-hot-keys/"/>
+  <id>/Shell-hot-keys</id>
+  <published>2013-01-18T00:00:00+00:00</published>
+  <updated>2013-01-18T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;shell 下的常用热键，在bash与zsh测试均可用，分类总结如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Move&lt;/strong&gt;:  &lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ctrl+f forward one character&lt;/li&gt;
+  &lt;li&gt;Ctrl+b back one character&lt;/li&gt;
+  &lt;li&gt;Escape+f forward one word&lt;/li&gt;
+  &lt;li&gt;Escape+b back one word&lt;/li&gt;
+  &lt;li&gt;Ctrl+a start of line&lt;/li&gt;
+  &lt;li&gt;Ctrl+e end of line&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Search&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ctrl-r does a search in the previously given commands so that you don’t have to repeat long command. &lt;/li&gt;
+  &lt;li&gt;Ctrl+p previous line in history&lt;/li&gt;
+  &lt;li&gt;Ctrl+n next line in history&lt;/li&gt;
+  &lt;li&gt;Ctrl+g cancel (cancels search, goes back to original command)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Delete&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ctrl+d delete char to right&lt;/li&gt;
+  &lt;li&gt;Ctrl+u delete to start of line from current position (works in bash, in zsh, empty the entire line)&lt;/li&gt;
+  &lt;li&gt;Ctrl+k delete to end of line from current position&lt;/li&gt;
+  &lt;li&gt;Ctrl+w delete the word before the cursor&lt;/li&gt;
+  &lt;li&gt;Escape+d delete the word after the cursor&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Modify&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ctrl+t Transpose (exchange) the character at the cursor location with the one preceding it.&lt;/li&gt;
+  &lt;li&gt;Escape+t Transpose the word at the cursor location with the one preceding it.&lt;/li&gt;
+  &lt;li&gt;Escape+l Convert the characters from the cursor location to the end of theword to lowercase.&lt;/li&gt;
+  &lt;li&gt;Escape+u Convert the characters from the cursor location to the end of the word to upcase.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Others&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ctrl-l – clear screen &lt;/li&gt;
+  &lt;li&gt;ctrl-c – kills the current command or process. &lt;/li&gt;
+  &lt;li&gt;ctrl-d – kills the shell. (没有输入时)&lt;/li&gt;
+  &lt;li&gt;ctrl-z – puts the currently running process in background, the process can be brought back to run state by using fg command. &lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/Shell-hot-keys/&quot;&gt;Shell hot keys&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on January 18, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>

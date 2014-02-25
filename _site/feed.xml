@@ -4,13 +4,78 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2014-02-24T10:18:07+00:00</updated>
+<updated>2014-02-25T06:39:08+00:00</updated>
 <id>/</id>
 <author>
   <name>zhoufeng</name>
   <uri>/</uri>
   <email>fengzhou1024@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Apache 日志过滤(filter)及转储(rotate)]]></title>
+  <link rel="alternate" type="text/html" href="/Apache-log/"/>
+  <id>/Apache-log</id>
+  <published>2014-02-25T00:00:00+00:00</published>
+  <updated>2014-02-25T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;今天，线上的apache出现了问题，查看日志，出现大片错误&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;child pid 10727 &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;signal File size limit exceeded &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;25&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+piped log program &lt;span class=&quot;s1&quot;&gt;&amp;#39;/usr/local/sbin/cronolog /path/to/access.log.%Y%m%d&amp;#39;&lt;/span&gt; failed unexpectedly
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;去网上一查，是因为日志文件超过了2G，导致cronolog程序继续写入日志失败，有人建议用logrotate代替cronolog
+切分日志，但是logrotate只支持cron模式运行，不能像cronolog一样通过管道来切分日志。  &lt;br /&gt;
+为什么日志会这么多呢？看了一下大量请求返回的都是404，这部分请求前些时间做了防盗链处理，更改了资源请求的url，但是盗链应用仍从旧链接访问，cdn请求不到资源便访问我们的apache，所以才有了这些请求。。好吧，那就不记录这些请求的日志，具体做法:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#设置一个条件&lt;/span&gt;
+SetEnvIf Request_URI &lt;span class=&quot;s2&quot;&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt; dontlog
+&lt;span class=&quot;c&quot;&gt;#当请求不满足dontlog条件时，才记录日志&lt;/span&gt;
+CustomLog &lt;span class=&quot;s2&quot;&gt;&amp;quot;|/usr/local/sbin/cronolog /path/to/access.log.%Y%m%d&amp;quot;&lt;/span&gt; log_fmt_name &lt;span class=&quot;nv&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;!dontlog
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;最后让apache重新加载配置文件&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;apachectl  graceful
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;graceful and restart&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;apachectl graceful: Gracefully restarts the Apache daemon by sending it a &lt;strong&gt;SIGUSR1&lt;/strong&gt;. If the daemon is not running, it is started.  &lt;br /&gt;
+This differs from a normal restart in that &lt;strong&gt;currently open connections are not aborted&lt;/strong&gt;.  &lt;br /&gt;
+A side effect is that old log files will not be closed immediately. This means that if used in a
+log rotation script, a substantial delay may be necessary to ensure that the old log files are closed before processing them.  &lt;br /&gt;
+This command automatically checks the configuration files via configtest before initiating the restart to make sure Apache doesn’t die.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;apachectl restart: Restarts the Apache daemon by sending it a &lt;strong&gt;SIGHUP&lt;/strong&gt;.If the
+daemon is not running, it is started.   &lt;br /&gt;
+This command automatically checks the configuration files via configtest before initiating the restart to make sure Apache doesn’t die.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;再看下日志，清净了很多。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;总结一下&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;p&gt;apache log rotate 主要有三种工具: rotatelogs/cronolog/logrotate，前两者可以用管道的方式转储，最后一种只支持外部cron方式定时运行。   &lt;br /&gt;
+当日志过大，超过2G时，如果用cronolog转储日志，要么缩小切分日志的时间间隔，要么改用logrotate。还有一种方法，直接 hack cronolog 的代码：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cronolog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#将open改为open64，返回的文件标志符的文件大小用off64_t类型，从而支持大于2G的位移, 相当于open加上O_LARGEFILE 的 flag&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;log_fd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pfilename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;O_WRONLY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;O_CREAT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;O_APPEND&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FILE_MODE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;/Apache-log/&quot;&gt;Apache 日志过滤(filter)及转储(rotate)&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on February 25, 2014.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>

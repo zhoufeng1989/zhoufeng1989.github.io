@@ -1,6 +1,14 @@
 [
 	
 		{
+		  "title"      : "Apache 日志过滤(filter)及转储(rotate)",
+		  "category"   : "",
+		  "url"        : "/Apache-log/",
+		  "date"       : "2014-02-25 00:00:00 +0000",
+		  "shortdate"  : "February 25, 2014"
+		} ,
+	
+		{
 		  "title"      : "Grep Summary",
 		  "category"   : "",
 		  "url"        : "/Grep-summary/",

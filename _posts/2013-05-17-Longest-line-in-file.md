@@ -40,5 +40,7 @@ wc -L a.txt
 如果在vim里面编辑文件，通常需要找出超过某长度的行，较好的方法是：在vim里面高亮长行。
 {% highlight vim %}
 # 高亮每行超过80个字符的部分, :help /\%
+# v表示virtual column
 /\%>80v
 {% endhighlight %}
+column 和 virtual column 的区别见[这里](http://stackoverflow.com/questions/13544640/vim-how-does-the-statusline-v-work)的讨论。

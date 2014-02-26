@@ -48,6 +48,14 @@
     </url>
     
     <url>
+        <loc>/Ps-command-and-process-status/</loc>
+    </url>
+    
+    <url>
+        <loc>/transfer-file-through-network/</loc>
+    </url>
+    
+    <url>
         <loc>/Grep-summary/</loc>
     </url>
     
@@ -57,6 +65,10 @@
     
     <url>
         <loc>/Useful-Python-command-options/</loc>
+    </url>
+    
+    <url>
+        <loc>/Longest-line-in-file/</loc>
     </url>
     
     <url>

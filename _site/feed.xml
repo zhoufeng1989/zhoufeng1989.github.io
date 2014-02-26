@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2014-02-25T06:39:08+00:00</updated>
+<updated>2014-02-26T07:48:26+00:00</updated>
 <id>/</id>
 <author>
   <name>zhoufeng</name>
@@ -75,6 +75,143 @@ This command automatically checks the configuration files via configtest before 
 
 
   &lt;p&gt;&lt;a href=&quot;/Apache-log/&quot;&gt;Apache 日志过滤(filter)及转储(rotate)&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on February 25, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Ps 命令和进程状态]]></title>
+  <link rel="alternate" type="text/html" href="/Ps-command-and-process-status/"/>
+  <id>/Ps-command-and-process-status</id>
+  <published>2014-02-14T00:00:00+00:00</published>
+  <updated>2014-02-14T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;&lt;strong&gt;ps&lt;/strong&gt;显示当前的进程信息，即process snapshot。&lt;/p&gt;
+
+&lt;p&gt;ps 接受一下几种选项：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UNIX 选项, 前面有横线（-,dash）；&lt;/li&gt;
+  &lt;li&gt;BSD 选项, 前面没有横线；&lt;/li&gt;
+  &lt;li&gt;GNU 长选项，前面有两条横线。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;不同类型的选项可以混用，但是不保证不产生冲突。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;不加任何选项时的默认行为：&lt;/strong&gt;    &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;selects all processes with the same effective user ID (euid=EUID) as the current user 
+and associated with the same terminal as the invoker.&lt;br /&gt;
+It displays the process ID (pid=PID), the terminal associated with
+the process (tname=TTY), the cumulated CPU time in [dd-]hh:mm:ss format
+(time=TIME), and the executable name (ucmd=CMD). &lt;br /&gt;
+Output is unsorted by default.   &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;常用选项&lt;/strong&gt;：     &lt;/p&gt;
+
+&lt;p&gt;UNIX选项：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;-e 所以进程，等价于 -A&lt;/li&gt;
+  &lt;li&gt;-f full-format, -F extra full-format&lt;/li&gt;
+  &lt;li&gt;-l long-format&lt;/li&gt;
+  &lt;li&gt;-H 以层次显示进程&lt;/li&gt;
+  &lt;li&gt;-L 显示线程信息&lt;/li&gt;
+  &lt;li&gt;-o 定制显示列&lt;/li&gt;
+  &lt;li&gt;-u userlist 根据进程的real user name 或 ID 筛选进程，进程的real user 是指进程创建者&lt;/li&gt;
+  &lt;li&gt;-U userlist 根据进程的effective user ID（EUID）或name来筛选进程，进程的effective user 是指进程的文件访问权限所来自的用户&lt;/li&gt;
+  &lt;li&gt;-C commandname，根据进程名显示进程&lt;/li&gt;
+  &lt;li&gt;-p pid，根据pid显示进程&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;BSD选项：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;a 显示拥有终端（tty）的所有进程，当和x连用时，显示所有进程&lt;/li&gt;
+  &lt;li&gt;u user-oriendted format   &lt;/li&gt;
+  &lt;li&gt;f 以层次显示进程&lt;/li&gt;
+  &lt;li&gt;m 显示线程信息&lt;/li&gt;
+  &lt;li&gt;o 定制显示列&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;一些例子&lt;/strong&gt;：    &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;显示所有进程
+ps axu 
+ps -ef
+显示httpd进程树
+ps -C httpd -Hf
+显示自定义列
+ps -eopid,tt,user,fname,tmout,f,wchan
+显示pid&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;42的进程名，comm后面的等号表示不显示列名（COMMAND）
+ps -p 42 -o &lt;span class=&quot;nv&quot;&gt;comm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;进程状态&lt;/strong&gt;：STAT列    &lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;D 不可中断的睡眠状态，一般是在进行磁盘IO，进程正处于系统调用中，不响应任何异步信号，不可被中断，只有当进程从系统调用返回时，才会响应信号进行信号处理，如果进程较长时间处于该状态，可能是硬件出了问题。&lt;/li&gt;
+  &lt;li&gt;R 正在执行或可被执行，进程控制块（task_struct）被放入了CPU的可执行队列上&lt;/li&gt;
+  &lt;li&gt;S 可中断的睡眠状态，处于该状态的进程在等待某事件的发生（如socket连接，信号量等），进程控制块被放入相应事件的的等待队列中，当事件发生时，队列中的一个或多个进程会被唤醒&lt;/li&gt;
+  &lt;li&gt;T 暂停状态或被跟踪状态，进程接受了sigstop信号，便进入了这个状态，进程暂停执行，当又接收sigcont信号时，进程恢复执行；当用gdb进行调试时，进程进入被跟踪状态，与此类似，当调试进程退出，进程才恢复执行&lt;/li&gt;
+  &lt;li&gt;X 退出状态，进程即将被销毁（should never be seen）&lt;/li&gt;
+  &lt;li&gt;Z Defunct， 进程成为僵尸进程，已经结束了进程，但是没有从进程表中删除，如果进程太多会导致进程表条目过多，导致系统崩溃，除进程表条目，不占用其他内存空间&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;除了上述进程状态外，ps还提供了一些其他信息：  &lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&amp;lt; 进程有较高优先级&lt;/li&gt;
+  &lt;li&gt;N 进程有较低优先级&lt;/li&gt;
+  &lt;li&gt;L has pages locked into memory (for real-time and custom IO)&lt;/li&gt;
+  &lt;li&gt;s 进程是session leader&lt;/li&gt;
+  &lt;li&gt;l 多线程进程&lt;/li&gt;
+  &lt;li&gt;+ 进程在前台进程组（foreground process group）&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/Ps-command-and-process-status/&quot;&gt;Ps 命令和进程状态&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on February 14, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[传输文件命令scp与rsync]]></title>
+  <link rel="alternate" type="text/html" href="/transfer-file-through-network/"/>
+  <id>/transfer-file-through-network</id>
+  <published>2013-10-08T00:00:00+00:00</published>
+  <updated>2013-10-08T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;&lt;strong&gt;scp&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#将远程文件传至本地&lt;/span&gt;
+scp -P port user@host:/path/to/src_file /path/to/dest_file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;rsync&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;当传输大量文件时，更好的做法是用rsync，rsync只传输不同的部分，传输较快&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;rsync -avzu --progress --bwlimt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;100 -e &lt;span class=&quot;s1&quot;&gt;&amp;#39;ssh -l username -p port&amp;#39;&lt;/span&gt; ip:path/to/src_files /path/to/dest_file
+
+-a 归档模式，保留文件的原有属性（如权限、组、所有人等），且递归传输
+-v verbose，显示详细信息
+-z 传输时进行压缩
+-u 如果目的文件比原文件更新，则跳过
+--progress 显示传输进度
+--bwlimit&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;KBPS 传输限速，KBytes per second
+-e&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;--rsh&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;COMMAND&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  选择远程shell，例子中是ssh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;/transfer-file-through-network/&quot;&gt;传输文件命令scp与rsync&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on October 08, 2013.&lt;/p&gt;</content>
 </entry>
 
 
@@ -367,6 +504,61 @@ grep &lt;span class=&quot;err&quot;&gt;&amp;#39;&lt;/span&gt;a&lt;span class=&qu
 &lt;/ol&gt;
 
   &lt;p&gt;&lt;a href=&quot;/Useful-Python-command-options/&quot;&gt;Useful Python command options&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on June 09, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[找出文件中最长的行]]></title>
+  <link rel="alternate" type="text/html" href="/Longest-line-in-file/"/>
+  <id>/Longest-line-in-file</id>
+  <published>2013-05-17T00:00:00+00:00</published>
+  <updated>2013-05-17T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;如何找出文件中最长的行？我写了下面的awk脚本，打印出最长行的行号，内容以及行的长度:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;awk&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/bin/awk -f&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;BEGIN&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;max_len&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;max_line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;max_nu&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;cur_len&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;length&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cur_len&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;max_len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;max_len&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cur_len&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;max_line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;max_nu&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NR&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;END&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;max_nu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;max_line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;max_len&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在网上看到，还有人这么写&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;awk &lt;span class=&quot;s1&quot;&gt;&amp;#39;{print length,NR,$0}&amp;#39;&lt;/span&gt; a.txt &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort -nr &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; head -1  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;第二种写法的好处是更简洁，而且可以根据head的参数来调整显示的行数，但是sort处多出排序的过程，处理起来更费时，应用时看情况而定。&lt;/p&gt;
+
+&lt;p&gt;另外,wc也可以显示最长行的长度，但是没法显示内容，可以结合其他工具来用&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;wc -L a.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;如果在vim里面编辑文件，通常需要找出超过某长度的行，较好的方法是：在vim里面高亮长行。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;vim&quot;&gt;# 高亮每行超过&lt;span class=&quot;m&quot;&gt;80&lt;/span&gt;个字符的部分&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; :help /\%
+/\%&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;80&lt;/span&gt;v
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;/Longest-line-in-file/&quot;&gt;找出文件中最长的行&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on May 17, 2013.&lt;/p&gt;</content>
 </entry>
 
 

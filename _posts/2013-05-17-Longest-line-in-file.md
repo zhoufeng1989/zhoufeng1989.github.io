@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 找出文件中最长的行
-tags: [Linux Shell]
+tags: [Linux Command]
 ---
 
 如何找出文件中最长的行？我写了下面的awk脚本，打印出最长行的行号，内容以及行的长度:

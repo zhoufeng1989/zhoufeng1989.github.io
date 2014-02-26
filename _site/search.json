@@ -49,6 +49,14 @@
 		} ,
 	
 		{
+		  "title"      : "elasticsearch 相关笔记",
+		  "category"   : "",
+		  "url"        : "/Elasticsearch-note/",
+		  "date"       : "2013-08-13 00:00:00 +0000",
+		  "shortdate"  : "August 13, 2013"
+		} ,
+	
+		{
 		  "title"      : "Operator.itemgetter in Python",
 		  "category"   : "",
 		  "url"        : "/operator.itemgetter-in-Python/",

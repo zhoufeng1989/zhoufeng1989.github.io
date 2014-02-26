@@ -129,6 +129,13 @@
 
 <div class="highlight"><pre><code class="bash"><span class="c">#将远程文件传至本地</span>
 scp -P port user@host:/path/to/src_file /path/to/dest_file
+
+scp 常用选项：  
+-r recursively copy a directory
+-P port
+-p Preserves modification <span class="nb">times</span>, access <span class="nb">times</span>, and modes from the original file.
+-v verbose 
+-l limit used bandwidth,specified in kbit/s. 
 </code></pre></div>
 
 <p><strong>rsync</strong></p>

@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <title>找出文件中最长的行 &#8211; __init__(self)</title>
 <meta name="description" content="zhoufeng's blog">
-<meta name="keywords" content="Linux Shell">
+<meta name="keywords" content="Linux Command">
 
 
 
@@ -110,7 +110,7 @@
     
     <div class="entry-wrapper">
       <header class="entry-header">
-        <span class="entry-tags"><a href="/tags/#Linux Shell" title="Pages tagged Linux Shell">Linux Shell</a></span>
+        <span class="entry-tags"><a href="/tags/#Linux Command" title="Pages tagged Linux Command">Linux Command</a></span>
         
           <h1 class="entry-title">找出文件中最长的行</h1>
         
@@ -161,9 +161,11 @@
 <p>如果在vim里面编辑文件，通常需要找出超过某长度的行，较好的方法是：在vim里面高亮长行。</p>
 
 <div class="highlight"><pre><code class="vim"># 高亮每行超过<span class="m">80</span>个字符的部分<span class="p">,</span> :help /\%
+# <span class="k">v</span>表示virtual column
 /\%<span class="p">&gt;</span><span class="m">80</span>v
 </code></pre></div>
 
+<p>column 和 virtual column 的区别见<a href="http://stackoverflow.com/questions/13544640/vim-how-does-the-statusline-v-work">这里</a>的讨论。</p>
 
         
       </div><!-- /.entry-content -->

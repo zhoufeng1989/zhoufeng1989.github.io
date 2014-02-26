@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2014-02-26T07:48:26+00:00</updated>
+<updated>2014-02-26T07:51:09+00:00</updated>
 <id>/</id>
 <author>
   <name>zhoufeng</name>
@@ -179,6 +179,132 @@ ps -p 42 -o &lt;span class=&quot;nv&quot;&gt;comm&lt;/span&gt;&lt;span class=&qu
 
 
 <entry>
+  <title type="html"><![CDATA[MySQL type convert when compare string and integer]]></title>
+  <link rel="alternate" type="text/html" href="/MySQL-type-convert/"/>
+  <id>/MySQL-type-convert</id>
+  <published>2013-12-18T00:00:00+00:00</published>
+  <updated>2013-12-18T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;以下在MySQL5.0版本适用，其他版本没有验证。&lt;/p&gt;
+
+&lt;p&gt;当在SQL中比较字符串和整数的时候，会将两方都转换为float进行比较，会产生意想不到的结果:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;sql&quot;&gt;&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;CBA123&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-----------------------+&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;CBA123&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-----------------------+&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-----------------------+&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;row&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;warning&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;等号两边都被转换成0.0&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;sql&quot;&gt;&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;CBA123&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-------------------------+&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;CBA123&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;0&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-------------------------+&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-------------------------+&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;row&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;字符串之间的比较不需要类型转换&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;sql&quot;&gt;&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;123CBA&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;----------------+&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;123CBA&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;----------------+&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;              &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;----------------+&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;row&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;warning&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;字符串 ‘123CBA’被转换成123.0
+看一下警告信息:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;sql&quot;&gt;&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;show&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;warnings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;---------+------+--------------------------------------------+&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Level&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Message&lt;/span&gt;                                    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;---------+------+--------------------------------------------+&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Warning&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1292&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Truncated&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;incorrect&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DOUBLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;123CBA&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;---------+------+--------------------------------------------+&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;row&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;所以在以字符串类型列为筛选条件的时候，还是不要和整数进行比较了。&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/MySQL-type-convert/&quot;&gt;MySQL type convert when compare string and integer&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on December 18, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Mysql tools]]></title>
+  <link rel="alternate" type="text/html" href="/Mysql-tools/"/>
+  <id>/Mysql-tools</id>
+  <published>2013-11-02T00:00:00+00:00</published>
+  <updated>2013-11-02T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;总结了常用的MySQL工具:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mysqldump&lt;/strong&gt;:备份数据库表&lt;/p&gt;
+
+&lt;p&gt;mysqldump常用的一些选项:
+–databases
+–tables
+–where #dump满足条件的数据
+-d –no-data #只dump表结构，不包括数据&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mysql&lt;/strong&gt;:与MySQL交互的命令行工具&lt;/p&gt;
+
+&lt;p&gt;mysql常用的一些选项
+-e 执行sql
+–skip-column-names 去掉列名，只有数据，用于在管道中直接处理数据。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mysqlbinlog&lt;/strong&gt;: 解析MySQL二进制log&lt;/p&gt;
+
+&lt;p&gt;mysqlbinlog –database=db_name \
+–start-date=”yyyy-mm-dd HH:MM:SS” \ 
+–stop-date=”yyyy-mm-dd HH:MM:SS” \
+/path/to/mysql-bin.log &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mysqldumpslow&lt;/strong&gt;:分析慢日志 &lt;/p&gt;
+
+&lt;p&gt;首先得配置my.cnf：
+log_slow_queries = /path/slow.log # 定义log位置，注意要有写入的权限&lt;/p&gt;
+
+&lt;p&gt;具体的使法如下：&lt;/p&gt;
+
+&lt;p&gt;mysqldumpslow -s c -t 40 /path/slow.log
+出来的结果是访问次数最多的40个sql，几个参数大概意思如下：
+-t 显示多少条
+-s 排序，默认是at。c是次数，t是时间，l是lock时间，r是返回结果。如果是ac，at，al，ar则是升序
+-g 可以用正则匹配部分语句&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;mysqlsla&lt;/strong&gt;: 分析日志
+-lt 日志类型，如slow,binary
+–sort META，按照META来排序,如c_sum(sql次数),t_sum(总时间，只有slow log支持),t_avg(平均每条sql的执行时间,只有slow log支持)
+–top n,只打印排名前n的数据
+具体见&lt;a href=&quot;http://hackmysql.com/mysqlsla&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;切分慢日志&lt;/strong&gt;
+/bin/mv mysql_slow_log dest_log 
+mysqladmin -uusername -ppass flush-logs
+flush-logs会自动切分binary log ，reopen error log and slow log&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/Mysql-tools/&quot;&gt;Mysql tools&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on November 02, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
   <title type="html"><![CDATA[传输文件命令scp与rsync]]></title>
   <link rel="alternate" type="text/html" href="/transfer-file-through-network/"/>
   <id>/transfer-file-through-network</id>
@@ -296,6 +422,63 @@ grep &lt;span class=&quot;err&quot;&gt;&amp;#39;&lt;/span&gt;a&lt;span class=&qu
 
 
   &lt;p&gt;&lt;a href=&quot;/Grep-summary/&quot;&gt;Grep Summary&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on September 03, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Operator.itemgetter in Python]]></title>
+  <link rel="alternate" type="text/html" href="/operator.itemgetter-in-Python/"/>
+  <id>/operator.itemgetter-in-Python</id>
+  <published>2013-06-14T00:00:00+00:00</published>
+  <updated>2013-06-14T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;help on operator.itemgetter:  &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;itemgetter(item, …) –&amp;gt; itemgetter object Return a callable object that fetches the given item(s) from its operand.    &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;After, f=itemgetter(2), the call f(r) returns r[2].     &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;After, g=itemgetter(2,5,3), the call g(r) returns (r[2], r[5], r[3]).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Threr are two tricks about this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;get dict values by keys&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;itemgetter&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;b&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;itemgetter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;b&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# y == (1, 2)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;sorted dict keys by values&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;itemgetter&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# y == [(&amp;#39;b&amp;#39;, 20), (&amp;#39;c&amp;#39;, 30), (&amp;#39;a&amp;#39;, 100)]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iteritems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# z == [&amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;a&amp;#39;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;more about sorted()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;the &lt;strong&gt;key&lt;/strong&gt; parameter specify a function to be called on each list element prior to making comparisons.
+The value of the key parameter should be a function that takes a single argument and returns a key to use for sorting purposes.
+A common pattern is to sort complex objects using some of the object’s indices as keys.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/operator.itemgetter-in-Python/&quot;&gt;Operator.itemgetter in Python&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on June 14, 2013.&lt;/p&gt;</content>
 </entry>
 
 
@@ -559,6 +742,59 @@ grep &lt;span class=&quot;err&quot;&gt;&amp;#39;&lt;/span&gt;a&lt;span class=&qu
 
 
   &lt;p&gt;&lt;a href=&quot;/Longest-line-in-file/&quot;&gt;找出文件中最长的行&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on May 17, 2013.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Vimdiff tips]]></title>
+  <link rel="alternate" type="text/html" href="/vimdiff-tips/"/>
+  <id>/vimdiff-tips</id>
+  <published>2013-01-18T00:00:00+00:00</published>
+  <updated>2013-01-18T00:00:00+00:00</updated>
+  <author>
+    <name>zhoufeng</name>
+    <uri></uri>
+    <email>fengzhou1024@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;&lt;strong&gt;Keyboard Shortcuts&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;do - Get changes from other window into the current window.&lt;/p&gt;
+
+&lt;p&gt;dp - Put the changes from current window into the other window.&lt;/p&gt;
+
+&lt;p&gt;]c - Jump to the next change.&lt;/p&gt;
+
+&lt;p&gt;[c - Jump to the previous change.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;:diffu[pdate]&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;recalculate the diff, useful when after making several changes vim’s isn’t showing minimal changes anymore.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;compare to remote file&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;vimdiff /path/to/file scp://user@host:port//path/to/file&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;将svn的diff命令改为vimdiff&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;首先，将下面的脚本保存，假设命名为 /path/to/svndiff&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 配置vimdiff程序的路径&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;DIFF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;vimdiff&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# SVN diff命令会传入两个文件的参数 &lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;LEFT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;RIGHT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 拼接成diff命令所需要的命令格式&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$DIFF&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$LEFT&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$RIGH&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在.subversion/config里：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;diff-cmd &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /path/to/svndiff
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+  &lt;p&gt;&lt;a href=&quot;/vimdiff-tips/&quot;&gt;Vimdiff tips&lt;/a&gt; was originally published by zhoufeng at &lt;a href=&quot;&quot;&gt;__init__(self)&lt;/a&gt; on January 18, 2013.&lt;/p&gt;</content>
 </entry>
 
 

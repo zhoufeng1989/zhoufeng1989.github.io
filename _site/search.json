@@ -17,6 +17,22 @@
 		} ,
 	
 		{
+		  "title"      : "MySQL type convert when compare string and integer",
+		  "category"   : "",
+		  "url"        : "/MySQL-type-convert/",
+		  "date"       : "2013-12-18 00:00:00 +0000",
+		  "shortdate"  : "December 18, 2013"
+		} ,
+	
+		{
+		  "title"      : "Mysql tools",
+		  "category"   : "",
+		  "url"        : "/Mysql-tools/",
+		  "date"       : "2013-11-02 00:00:00 +0000",
+		  "shortdate"  : "November 02, 2013"
+		} ,
+	
+		{
 		  "title"      : "传输文件命令scp与rsync",
 		  "category"   : "",
 		  "url"        : "/transfer-file-through-network/",
@@ -30,6 +46,14 @@
 		  "url"        : "/Grep-summary/",
 		  "date"       : "2013-09-03 00:00:00 +0000",
 		  "shortdate"  : "September 03, 2013"
+		} ,
+	
+		{
+		  "title"      : "Operator.itemgetter in Python",
+		  "category"   : "",
+		  "url"        : "/operator.itemgetter-in-Python/",
+		  "date"       : "2013-06-14 00:00:00 +0000",
+		  "shortdate"  : "June 14, 2013"
 		} ,
 	
 		{
@@ -54,6 +78,14 @@
 		  "url"        : "/Longest-line-in-file/",
 		  "date"       : "2013-05-17 00:00:00 +0000",
 		  "shortdate"  : "May 17, 2013"
+		} ,
+	
+		{
+		  "title"      : "Vimdiff tips",
+		  "category"   : "",
+		  "url"        : "/vimdiff-tips/",
+		  "date"       : "2013-01-18 00:00:00 +0000",
+		  "shortdate"  : "January 18, 2013"
 		} ,
 	
 		{

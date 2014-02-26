@@ -1,0 +1,287 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Ps 命令和进程状态 &#8211; __init__(self)</title>
+<meta name="description" content="zhoufeng's blog">
+<meta name="keywords" content="Linux Command">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ps 命令和进程状态">
+<meta property="og:description" content="zhoufeng's blog">
+<meta property="og:url" content="/Ps-command-and-process-status/">
+<meta property="og:site_name" content="__init__(self)">
+
+
+
+
+
+<link rel="canonical" href="/Ps-command-and-process-status/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="__init__(self) Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.min.css">
+<!-- Webfonts -->
+<!--
+<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+-->
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+	        
+			<li>
+				
+					<a href="/articles/">Articles</a>
+				 
+			</li>
+	        
+			<li>
+				
+					<a href="/about/">About</a>
+				 
+			</li>
+	        
+	        <li><a href="/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
+	        <li class="dosearch"><i class="icon-search"></i> Search</li>
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<div class="search-wrapper">
+	<div class="search-form">
+		<input type="text" class="search-field" placeholder="Search...">
+		<i class="icon-remove-sign icon-2x"></i>
+		<ul class="search-results post-list"></ul><!-- /.search-results -->
+	</div><!-- /.search-form -->
+</div><!-- ./search-wrapper -->
+
+<header class="masthead">
+	<div class="wrap">
+        
+    		<a href="" class="site-logo" rel="home" title="__init__(self)"><img src="/images/site-logo.png" width="200" height="200" alt="__init__(self) logo" class="animated fadeInUp"></a>
+        
+        <h1 class="site-title animated fadeIn"><a href="">__init__(self)</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">zhoufeng's blog</h2>
+	</div>
+</header><!-- /.masthead -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"><a href="/tags/#Linux Command" title="Pages tagged Linux Command">Linux Command</a></span>
+        
+          <h1 class="entry-title">Ps 命令和进程状态</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        <img src="/images/bio-photo.jpg" alt="zhoufeng photo" class="author-photo">
+        <span class="author vcard">By <span class="fn"><a href="/about/" title="About zhoufeng">zhoufeng</a></span></span>
+        <span class="entry-date date published"><time datetime="2014-02-14T00:00:00+00:00"><i class="icon-calendar-empty"></i> February 14, 2014</time></span>
+        
+        
+        <span><a href="/Ps-command-and-process-status/" rel="bookmark" title="Ps 命令和进程状态"><i class="icon-link"></i> Permalink</a></span>
+        
+      </footer>
+      <div class="entry-content">
+        <p><strong>ps</strong>显示当前的进程信息，即process snapshot。</p>
+
+<p>ps 接受一下几种选项：</p>
+
+<ul>
+  <li>UNIX 选项, 前面有横线（-,dash）；</li>
+  <li>BSD 选项, 前面没有横线；</li>
+  <li>GNU 长选项，前面有两条横线。</li>
+</ul>
+
+<p>不同类型的选项可以混用，但是不保证不产生冲突。</p>
+
+<p><strong>不加任何选项时的默认行为：</strong>    </p>
+
+<blockquote>
+  <p>selects all processes with the same effective user ID (euid=EUID) as the current user 
+and associated with the same terminal as the invoker.<br />
+It displays the process ID (pid=PID), the terminal associated with
+the process (tname=TTY), the cumulated CPU time in [dd-]hh:mm:ss format
+(time=TIME), and the executable name (ucmd=CMD). <br />
+Output is unsorted by default.   </p>
+</blockquote>
+
+<p><strong>常用选项</strong>：     </p>
+
+<p>UNIX选项：</p>
+
+<ul>
+  <li>-e 所以进程，等价于 -A</li>
+  <li>-f full-format, -F extra full-format</li>
+  <li>-l long-format</li>
+  <li>-H 以层次显示进程</li>
+  <li>-L 显示线程信息</li>
+  <li>-o 定制显示列</li>
+  <li>-u userlist 根据进程的real user name 或 ID 筛选进程，进程的real user 是指进程创建者</li>
+  <li>-U userlist 根据进程的effective user ID（EUID）或name来筛选进程，进程的effective user 是指进程的文件访问权限所来自的用户</li>
+  <li>-C commandname，根据进程名显示进程</li>
+  <li>-p pid，根据pid显示进程</li>
+</ul>
+
+<p>BSD选项：</p>
+
+<ul>
+  <li>a 显示拥有终端（tty）的所有进程，当和x连用时，显示所有进程</li>
+  <li>u user-oriendted format   </li>
+  <li>f 以层次显示进程</li>
+  <li>m 显示线程信息</li>
+  <li>o 定制显示列</li>
+</ul>
+
+<p><strong>一些例子</strong>：    </p>
+
+<div class="highlight"><pre><code class="bash">显示所有进程
+ps axu 
+ps -ef
+显示httpd进程树
+ps -C httpd -Hf
+显示自定义列
+ps -eopid,tt,user,fname,tmout,f,wchan
+显示pid<span class="o">=</span>42的进程名，comm后面的等号表示不显示列名（COMMAND）
+ps -p 42 -o <span class="nv">comm</span><span class="o">=</span>
+</code></pre></div>
+
+<p><strong>进程状态</strong>：STAT列    </p>
+
+<ul>
+  <li>D 不可中断的睡眠状态，一般是在进行磁盘IO，进程正处于系统调用中，不响应任何异步信号，不可被中断，只有当进程从系统调用返回时，才会响应信号进行信号处理，如果进程较长时间处于该状态，可能是硬件出了问题。</li>
+  <li>R 正在执行或可被执行，进程控制块（task_struct）被放入了CPU的可执行队列上</li>
+  <li>S 可中断的睡眠状态，处于该状态的进程在等待某事件的发生（如socket连接，信号量等），进程控制块被放入相应事件的的等待队列中，当事件发生时，队列中的一个或多个进程会被唤醒</li>
+  <li>T 暂停状态或被跟踪状态，进程接受了sigstop信号，便进入了这个状态，进程暂停执行，当又接收sigcont信号时，进程恢复执行；当用gdb进行调试时，进程进入被跟踪状态，与此类似，当调试进程退出，进程才恢复执行</li>
+  <li>X 退出状态，进程即将被销毁（should never be seen）</li>
+  <li>Z Defunct， 进程成为僵尸进程，已经结束了进程，但是没有从进程表中删除，如果进程太多会导致进程表条目过多，导致系统崩溃，除进程表条目，不占用其他内存空间</li>
+</ul>
+
+<p>除了上述进程状态外，ps还提供了一些其他信息：  </p>
+
+<ul>
+  <li>&lt; 进程有较高优先级</li>
+  <li>N 进程有较低优先级</li>
+  <li>L has pages locked into memory (for real-time and custom IO)</li>
+  <li>s 进程是session leader</li>
+  <li>l 多线程进程</li>
+  <li>+ 进程在前台进程组（foreground process group）</li>
+</ul>
+
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="/MySQL-type-convert/" class="btn" title="MySQL type convert when compare string and integer">Previous article</a>
+      
+      
+        <a href="/Apache-log/" class="btn" title="Apache 日志过滤(filter)及转储(rotate)">Next article</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2014 zhoufeng. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/">So Simple Theme</a>.</span>
+<div class="social-icons">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</div><!-- /.social-icons -->
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+<!-- Jekyll Simple Search option -->
+<script>
+  $(document).ready(function() {
+      $('.search-field').simpleJekyllSearch({
+          jsonFile : '/search.json',
+          searchResults : '.search-results',
+          template : '<li><article><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></article></li>',
+          noResults: '<p>Nothing found.</p>'
+        });
+  });
+
+  (function( $, window, undefined ) {
+    
+     var bs = {
+          close: $(".icon-remove-sign"),
+          searchform: $(".search-form"),
+          canvas: $("body"),
+          dothis: $('.dosearch')
+      };
+    
+    bs.dothis.on('click', function() {
+      $('.search-wrapper').css({ display: "block" });
+      bs.searchform.toggleClass('active');
+      bs.searchform.find('input').focus();
+      bs.canvas.toggleClass('search-overlay');
+    });
+    
+      bs.close.on('click', function() {
+        $('.search-wrapper').removeAttr( 'style' );
+        bs.searchform.toggleClass('active');
+        bs.canvas.removeClass('search-overlay');
+    });
+  })( jQuery, window );
+</script>
+
+
+	        
+
+</body>
+</html>

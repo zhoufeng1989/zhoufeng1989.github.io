@@ -5,25 +5,25 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Articles &#8211; __init__(self)</title>
-<meta name="description" content="An archive of posts sorted by date.">
-
+<title>Vimdiff tips &#8211; __init__(self)</title>
+<meta name="description" content="zhoufeng's blog">
+<meta name="keywords" content="Linux Command">
 
 
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Articles">
-<meta property="og:description" content="An archive of posts sorted by date.">
-<meta property="og:url" content="/articles/">
+<meta property="og:title" content="Vimdiff tips">
+<meta property="og:description" content="zhoufeng's blog">
+<meta property="og:url" content="/vimdiff-tips/">
 <meta property="og:site_name" content="__init__(self)">
 
 
 
 
 
-<link rel="canonical" href="/articles/">
+<link rel="canonical" href="/vimdiff-tips/">
 <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="__init__(self) Feed">
 
 
@@ -60,7 +60,7 @@
 
 </head>
 
-<body id="page">
+<body id="post">
 
 <div class="navigation-wrapper">
 	<nav role="navigation" id="site-nav" class="animated drop">
@@ -106,43 +106,74 @@
 
 
 <div id="main" role="main">
-  <article class="entry">
+  <article class="hentry">
     
     <div class="entry-wrapper">
       <header class="entry-header">
-        <h1 class="entry-title">Articles</h1>
+        <span class="entry-tags"><a href="/tags/#Linux Command" title="Pages tagged Linux Command">Linux Command</a></span>
+        
+          <h1 class="entry-title">Vimdiff tips</h1>
+        
       </header>
+      <footer class="entry-meta">
+        <img src="/images/bio-photo.jpg" alt="zhoufeng photo" class="author-photo">
+        <span class="author vcard">By <span class="fn"><a href="/about/" title="About zhoufeng">zhoufeng</a></span></span>
+        <span class="entry-date date published"><time datetime="2013-01-18T00:00:00+00:00"><i class="icon-calendar-empty"></i> January 18, 2013</time></span>
+        
+        
+        <span><a href="/vimdiff-tips/" rel="bookmark" title="Vimdiff tips"><i class="icon-link"></i> Permalink</a></span>
+        
+      </footer>
       <div class="entry-content">
-        <ul class="post-list">
- 
-  <li><article><a href="/Apache-log/">Apache 日志过滤(filter)及转储(rotate) <span class="entry-date"><time datetime="2014-02-25T00:00:00+00:00">February 25, 2014</time></span></a></article></li>
- 
-  <li><article><a href="/Ps-command-and-process-status/">Ps 命令和进程状态 <span class="entry-date"><time datetime="2014-02-14T00:00:00+00:00">February 14, 2014</time></span></a></article></li>
- 
-  <li><article><a href="/MySQL-type-convert/">MySQL type convert when compare string and integer <span class="entry-date"><time datetime="2013-12-18T00:00:00+00:00">December 18, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/Mysql-tools/">Mysql tools <span class="entry-date"><time datetime="2013-11-02T00:00:00+00:00">November 02, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/transfer-file-through-network/">传输文件命令scp与rsync <span class="entry-date"><time datetime="2013-10-08T00:00:00+00:00">October 08, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/Grep-summary/">Grep Summary <span class="entry-date"><time datetime="2013-09-03T00:00:00+00:00">September 03, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/operator.itemgetter-in-Python/">Operator.itemgetter in Python <span class="entry-date"><time datetime="2013-06-14T00:00:00+00:00">June 14, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/test/">test <span class="entry-date"><time datetime="2013-06-10T00:00:00+00:00">June 10, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/Useful-Python-command-options/">Useful Python command options <span class="entry-date"><time datetime="2013-06-09T00:00:00+00:00">June 09, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/Longest-line-in-file/">找出文件中最长的行 <span class="entry-date"><time datetime="2013-05-17T00:00:00+00:00">May 17, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/vimdiff-tips/">Vimdiff tips <span class="entry-date"><time datetime="2013-01-18T00:00:00+00:00">January 18, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/Shell-hot-keys/">Shell hot keys <span class="entry-date"><time datetime="2013-01-18T00:00:00+00:00">January 18, 2013</time></span></a></article></li>
+        <p><strong>Keyboard Shortcuts</strong>:</p>
 
-</ul>
+<p>do - Get changes from other window into the current window.</p>
 
+<p>dp - Put the changes from current window into the other window.</p>
+
+<p>]c - Jump to the next change.</p>
+
+<p>[c - Jump to the previous change.</p>
+
+<p><strong>:diffu[pdate]</strong>:</p>
+
+<p>recalculate the diff, useful when after making several changes vim’s isn’t showing minimal changes anymore.</p>
+
+<p><strong>compare to remote file</strong></p>
+
+<p>vimdiff /path/to/file scp://user@host:port//path/to/file</p>
+
+<p><strong>将svn的diff命令改为vimdiff</strong></p>
+
+<p>首先，将下面的脚本保存，假设命名为 /path/to/svndiff</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c">#!/bin/sh</span>
+<span class="c"># 配置vimdiff程序的路径</span>
+<span class="nv">DIFF</span><span class="o">=</span><span class="s2">&quot;vimdiff&quot;</span>
+<span class="c"># SVN diff命令会传入两个文件的参数 </span>
+<span class="nv">LEFT</span><span class="o">=</span><span class="k">${</span><span class="nv">6</span><span class="k">}</span>
+<span class="nv">RIGHT</span><span class="o">=</span><span class="k">${</span><span class="nv">7</span><span class="k">}</span>
+<span class="c"># 拼接成diff命令所需要的命令格式</span>
+<span class="nv">$DIFF</span> <span class="nv">$LEFT</span> <span class="nv">$RIGH</span>
+</code></pre></div>
+
+<p>在.subversion/config里：</p>
+
+<div class="highlight"><pre><code class="bash">diff-cmd <span class="o">=</span> /path/to/svndiff
+</code></pre></div>
+
+
+        
       </div><!-- /.entry-content -->
     </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="/Shell-hot-keys/" class="btn" title="Shell hot keys">Previous article</a>
+      
+      
+        <a href="/Longest-line-in-file/" class="btn" title="找出文件中最长的行">Next article</a>
+      
+    </nav><!-- /.pagination -->
   </article>
 </div><!-- /#main -->
 
@@ -203,7 +234,7 @@
 </script>
 
 
-          
+	        
 
 </body>
 </html>

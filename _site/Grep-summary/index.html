@@ -5,25 +5,25 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Articles &#8211; __init__(self)</title>
-<meta name="description" content="An archive of posts sorted by date.">
-
+<title>Grep Summary &#8211; __init__(self)</title>
+<meta name="description" content="zhoufeng's blog">
+<meta name="keywords" content="Linux Command">
 
 
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Articles">
-<meta property="og:description" content="An archive of posts sorted by date.">
-<meta property="og:url" content="/articles/">
+<meta property="og:title" content="Grep Summary">
+<meta property="og:description" content="zhoufeng's blog">
+<meta property="og:url" content="/Grep-summary/">
 <meta property="og:site_name" content="__init__(self)">
 
 
 
 
 
-<link rel="canonical" href="/articles/">
+<link rel="canonical" href="/Grep-summary/">
 <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="__init__(self) Feed">
 
 
@@ -60,7 +60,7 @@
 
 </head>
 
-<body id="page">
+<body id="post">
 
 <div class="navigation-wrapper">
 	<nav role="navigation" id="site-nav" class="animated drop">
@@ -106,43 +106,105 @@
 
 
 <div id="main" role="main">
-  <article class="entry">
+  <article class="hentry">
     
     <div class="entry-wrapper">
       <header class="entry-header">
-        <h1 class="entry-title">Articles</h1>
+        <span class="entry-tags"><a href="/tags/#Linux Command" title="Pages tagged Linux Command">Linux Command</a></span>
+        
+          <h1 class="entry-title">Grep Summary</h1>
+        
       </header>
+      <footer class="entry-meta">
+        <img src="/images/bio-photo.jpg" alt="zhoufeng photo" class="author-photo">
+        <span class="author vcard">By <span class="fn"><a href="/about/" title="About zhoufeng">zhoufeng</a></span></span>
+        <span class="entry-date date published"><time datetime="2013-09-03T00:00:00+00:00"><i class="icon-calendar-empty"></i> September 03, 2013</time></span>
+        
+        
+        <span><a href="/Grep-summary/" rel="bookmark" title="Grep Summary"><i class="icon-link"></i> Permalink</a></span>
+        
+      </footer>
       <div class="entry-content">
-        <ul class="post-list">
- 
-  <li><article><a href="/Apache-log/">Apache 日志过滤(filter)及转储(rotate) <span class="entry-date"><time datetime="2014-02-25T00:00:00+00:00">February 25, 2014</time></span></a></article></li>
- 
-  <li><article><a href="/Ps-command-and-process-status/">Ps 命令和进程状态 <span class="entry-date"><time datetime="2014-02-14T00:00:00+00:00">February 14, 2014</time></span></a></article></li>
- 
-  <li><article><a href="/MySQL-type-convert/">MySQL type convert when compare string and integer <span class="entry-date"><time datetime="2013-12-18T00:00:00+00:00">December 18, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/Mysql-tools/">Mysql tools <span class="entry-date"><time datetime="2013-11-02T00:00:00+00:00">November 02, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/transfer-file-through-network/">传输文件命令scp与rsync <span class="entry-date"><time datetime="2013-10-08T00:00:00+00:00">October 08, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/Grep-summary/">Grep Summary <span class="entry-date"><time datetime="2013-09-03T00:00:00+00:00">September 03, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/operator.itemgetter-in-Python/">Operator.itemgetter in Python <span class="entry-date"><time datetime="2013-06-14T00:00:00+00:00">June 14, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/test/">test <span class="entry-date"><time datetime="2013-06-10T00:00:00+00:00">June 10, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/Useful-Python-command-options/">Useful Python command options <span class="entry-date"><time datetime="2013-06-09T00:00:00+00:00">June 09, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/Longest-line-in-file/">找出文件中最长的行 <span class="entry-date"><time datetime="2013-05-17T00:00:00+00:00">May 17, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/vimdiff-tips/">Vimdiff tips <span class="entry-date"><time datetime="2013-01-18T00:00:00+00:00">January 18, 2013</time></span></a></article></li>
- 
-  <li><article><a href="/Shell-hot-keys/">Shell hot keys <span class="entry-date"><time datetime="2013-01-18T00:00:00+00:00">January 18, 2013</time></span></a></article></li>
+        <p>基本用法是:  <br />
+<strong>grep [options] PATTERN [FILES]</strong>  </p>
 
+<p><strong>options</strong><br />
+常用的<em>options</em>有:  </p>
+
+<ul>
+  <li>-i  匹配时不区别大小写   </li>
+  <li>-v  不匹配模式</li>
+  <li>-n  显示行数</li>
+  <li>-r  递归查找</li>
+  <li>-l  只显示匹配的字符串所在的文件名,对于查看哪个文件有匹配模式的字符串时有用</li>
 </ul>
 
+<p>上下文相关:    </p>
+
+<ul>
+  <li>-A n after, 显示匹配行以及后面的n行</li>
+  <li>-B n before, 显示匹配行以及之前的n行</li>
+  <li>-C n 显示匹配行以及前后n行，等价于 -A n -B n</li>
+</ul>
+
+<p><strong>PATTERN</strong> <br />
+<em>PATTERN</em>是指定的正则表达式,为了避免正则表达式被shell展开(如 <code>*</code>, <code>[</code>, <code>]</code>等),比较好的做法是给正则表达式加上引号。  如:</p>
+
+<div class="highlight"><pre><code class="bash">grep <span class="s1">&#39;*cat*&#39;</span> a.txt
+</code></pre></div>
+
+<p>grep的正则表达式属于POSIX规范的<a href="http://www.regular-expressions.info/posix.html">BRE</a>流派,字符组(<code>[]</code>)、锚点(<code>^</code>(匹配行首)、<code>$</code>(匹配行尾)、<code>\&lt;</code>、<code>\&gt;</code>(匹配单词的起始和结束位置))都无需转义，但是量词中，除了<code>*</code>以外, 其他量词(<code>+</code>, <code>?</code>, <code>{n, m}</code>)都需要转义才能使用。</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c"># 匹配文件a.txt中含有单个数字的行，使用POSIX字符组   </span>
+grep <span class="s1">&#39;[[:digit:]]&#39;</span> a.txt
+<span class="c"># 匹配文件a.txt中能够匹配单词hello的行</span>
+grep <span class="s1">&#39;\&lt;hello\&gt;&#39;</span> a.txt
+<span class="c"># 匹配文件a.txt中含有多个连续字母a的行</span>
+grep <span class="err">&#39;</span>a<span class="se">\{</span>2,<span class="se">\}</span> a.txt
+</code></pre></div>
+
+<p>grep支持多选结构，但是必须转义<code>(</code>、<code>|</code>、<code>)</code>,捕获分组的记法是 <code>\1</code>,<code>\2</code>。</p>
+
+<p><strong>如何匹配tab字符</strong> <br />
+<em>POSIX regular expression</em>没有将<em>tab</em>映射为<em>\t</em>,<em>grep</em>中如何搜索<em>tab</em>呢?   </p>
+
+<ul>
+  <li>使用<em>perl</em>风格的正则表达式    </li>
+</ul>
+
+<div class="highlight"><pre><code class="bash">    grep -P <span class="s1">&#39;\t&#39;</span> a.txt
+    
+</code></pre></div>
+
+<ul>
+  <li>使用<code>echo</code>直接输出的tab     </li>
+</ul>
+
+<div class="highlight"><pre><code class="bash">    grep <span class="s2">&quot;$(echo -ne \\t)&quot;</span> a.txt
+    
+</code></pre></div>
+
+<ul>
+  <li>CTRL+V tab: CTRL+V 使接下来的输入的字符失去特殊意义</li>
+  <li>如果用的是<em>Bash shell</em>, 还可以用<a href="http://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html#ANSI_002dC-Quoting">ansi c quoting</a>这个特性</li>
+</ul>
+
+<div class="highlight"><pre><code class="bash">    grep <span class="s1">$&#39;\t&#39;</span> a.txt
+    
+</code></pre></div>
+
+
+        
       </div><!-- /.entry-content -->
     </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="/operator.itemgetter-in-Python/" class="btn" title="Operator.itemgetter in Python">Previous article</a>
+      
+      
+        <a href="/transfer-file-through-network/" class="btn" title="传输文件命令scp与rsync">Next article</a>
+      
+    </nav><!-- /.pagination -->
   </article>
 </div><!-- /#main -->
 
@@ -203,7 +265,7 @@
 </script>
 
 
-          
+	        
 
 </body>
 </html>

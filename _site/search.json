@@ -17,6 +17,14 @@
 		} ,
 	
 		{
+		  "title"      : "Python 常用的库和工具（持续更新）",
+		  "category"   : "",
+		  "url"        : "/Python-Useful-Tools/",
+		  "date"       : "2014-01-13 00:00:00 +0000",
+		  "shortdate"  : "January 13, 2014"
+		} ,
+	
+		{
 		  "title"      : "MySQL type convert when compare string and integer",
 		  "category"   : "",
 		  "url"        : "/MySQL-type-convert/",
@@ -94,6 +102,22 @@
 		  "url"        : "/Longest-line-in-file/",
 		  "date"       : "2013-05-17 00:00:00 +0000",
 		  "shortdate"  : "May 17, 2013"
+		} ,
+	
+		{
+		  "title"      : "Python 中 str, list, tuple, dict, set 的一些技巧",
+		  "category"   : "",
+		  "url"        : "/string-list-tuple-dict-set/",
+		  "date"       : "2013-03-26 00:00:00 +0000",
+		  "shortdate"  : "March 26, 2013"
+		} ,
+	
+		{
+		  "title"      : "Python 的内置函数 max, min, sorted 中的参数 key",
+		  "category"   : "",
+		  "url"        : "/Key-parameter-in-max-min-sorted/",
+		  "date"       : "2013-02-12 00:00:00 +0000",
+		  "shortdate"  : "February 12, 2013"
 		} ,
 	
 		{

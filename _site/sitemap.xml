@@ -52,6 +52,10 @@
     </url>
     
     <url>
+        <loc>/Python-Useful-Tools/</loc>
+    </url>
+    
+    <url>
         <loc>/MySQL-type-convert/</loc>
     </url>
     
@@ -89,6 +93,14 @@
     
     <url>
         <loc>/Longest-line-in-file/</loc>
+    </url>
+    
+    <url>
+        <loc>/string-list-tuple-dict-set/</loc>
+    </url>
+    
+    <url>
+        <loc>/Key-parameter-in-max-min-sorted/</loc>
     </url>
     
     <url>

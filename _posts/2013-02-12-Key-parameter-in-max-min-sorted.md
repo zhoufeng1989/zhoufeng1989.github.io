@@ -25,7 +25,17 @@ max(x, key=f)
 sorted(x, abs) # 按照元素的绝对值排序，[-1, -2, -3]
 {% endhighlight %}
 
+如果有多个key值决定排序，可以考虑将各个key值元组化
+
+{% highlight python %}
+data = [
+    {'age': 21, 'grade': 85}, 
+    {'age': 21, 'grade': 70}, 
+    {'age': 22, 'grade': 90}
+]
+# 按年龄升序，分数降序排序
+# [{'age': 21, 'grade': 85}, {'age': 21, 'grade': 70}, {'age': 22, 'grade': 90}]
+sorted(data, key=lambda item: (item['age'], -item['grade']))
+{% endhighlight %}
+
 通过对key的设定，可以灵活的进行找最大/小或排序。
-
-
-

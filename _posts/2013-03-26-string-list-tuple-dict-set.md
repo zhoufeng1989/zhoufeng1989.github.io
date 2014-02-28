@@ -3,14 +3,18 @@ layout: post
 title: Python 中 str, list, tuple, dict, set 的一些技巧
 tags: [Python]
 ---
-**int**
+**integer**
 
-+   int padding 显示
++   integer padding 显示
 {% highlight python %}
 x = 4
 print '%03d' % x # 004
 print"{0:03d}".format(4) # 004
 {% endhighlight %}
+
++   int 和 long   
+
+int由c语言中的long实现，至少32位，具体范围由机器决定；long的范围是unlimited。
 
 
 **str**  
@@ -28,7 +32,7 @@ x[1::3] # 'be'
 x[::-1] # 倒序字符串
 {% endhighlight %}
 
-+   join
++   连接（join）
 连接list/tuple的元素时，用join，而不是循环：
 
 {% highlight python %}
@@ -46,6 +50,28 @@ result = ''.join(x)
 x = '4'
 print x.zfill(3)  #'004'
 {% endhighlight %}
+
++   startswith/endswith    
+第一个参数(prefix/suffix)接受元组作为参数，如果满足prefix/suffix是元组中的任一元素，就返回True
+第二个参数（start）和第三个参数（end）可选，用来确定测试的位置
+
+{% highlight python %}
+'abc'.startswith(('a', 'b')) # True
+'abcdef'.statswith('c', 2) # True
+{% endhighlight %}
+
++   maketrans/translate     
+maketrans创建一个字符翻译表(映射表),translate根据翻译表翻译字符串。      
+translate(table,[delete_chars]) 会先删除原字符串中包含的[delete_chars]，然后再根据table进行翻译，当table为None时,只做删除操作.
+{% highlight python %}
+table = str.maketrans(
+    string.ascii_lowercase, string.ascii_lowercase[2:] + string.ascii_lowercase[:2])
+# 源字符串去掉'xy'后，进行映射
+string.translate('abcxyz', table, 'xy') # 'cdeb'
+{% endhighlight %}
+
+
+
 
 **list**
 
@@ -114,6 +140,13 @@ class MyDict(object):
 get方法类似，但是当提供的key不存在时，不会抛出异常，而是返回None；    
 setdefault(key, value)等价于 get(key, value)，且当key不存在时d[key] = value    
 
++   字典推导(dict comprehension)
+
+    {% highlight python %}
+    x = [1, 2, 3, 4]
+    d = {key: key for key in x if key % 2}
+    {% endhighlight %}
+
 +   深拷贝和浅拷贝  
     深拷贝是值拷贝，浅拷贝是引用拷贝
     {% highlight python %}
@@ -124,9 +157,25 @@ setdefault(key, value)等价于 get(key, value)，且当key不存在时d[key] = 
     z[2] = 5 # x不受影响，因为这相当于z中的引用更改了指向的对象，而x中的引用不受影响
     p = copy.deepcopy(x) # p是x的深拷贝，x与z互不影响
     {% endhighlight %}                
-    
-                                    
+
 参考:  
     [stackoverflow](http://stackoverflow.com/questions/3975376/understanding-dict-copy-shallow-or-deep?answertab=votes#tab-top)的讨论    
     [shallow and deep copy](http://www.python-course.eu/deep_copy.php)
+
+**set**
+
++   set comprehension(set 推导) 
+    {% highlight python %}
+    x = [1, 2, 3, 1]
+    # s=set([1, 2, 3])
+    s = {key for key in x}
+    {% endhighlight %}
+                                    
++   list去重
+    {% highlight python %}
+    x = [1, 2, 3, 3]
+    # s=set([1, 2, 3])
+    s = set(x)
+    {% endhighlight %}
+
     

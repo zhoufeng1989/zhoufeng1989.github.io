@@ -43,7 +43,7 @@ typedef struct _greenlet {
 
 
 **greenlet堆栈布局**:    
-{% raw %}
+{% highlight python %}
 
                |     ^^^       |
                |  older data   |
@@ -63,25 +63,25 @@ typedef struct _greenlet {
                |  newer data   |
                |     vvv       |
 
-
-
-{% endraw %}
+{% endhighlight %}
 变化规则:       
 当切换至其他greenlet时,会有部分数据由栈移至堆中(slp_save_state),避免被新的greenlet覆盖;
 当重新切换回时,数据会由堆(如果有数据被保存在堆中)切换(slp_restore_state)回栈中
 
 **创建main greenlet**: 
 
-**static PyGreenlet* green_create_main(void)**, 当tstate[ts_curkey]为空时，说明该线程还没有greenlet，创建main
-greenlet,其中:    
-	gmain->stack_start = (char*) 1;
-	gmain->stack_stop = (char*) -1;
+**static PyGreenlet* green_create_main(void)**   
+当tstate[ts_curkey]为空时，说明该线程还没有greenlet，创建main greenlet,其中:    
+{% highlight python %}
+gmain->stack_start = (char*) 1;   
+gmain->stack_stop = (char*) -1;
+{% endhighlight %}
 表示main greenlet 占据了整个stack
 
 
 **greenlet 切换**:    
 
-**static PyObject * g_switch(PyGreenlet* target, PyObject* args, PyObject* kwargs)**
+**static PyObject * g_switch(PyGreenlet* target, PyObject* args, PyObject* kwargs)**    
 切换greenlet,将执行流切换至target：
 
 1.  target没有执行过,stack_start被置为(char*)1，即最低地址,stack_stop被置为当前栈顶地址,表示整个栈被新greenlet占据,和该部分栈有重合的greenlet都要将数据拷贝至堆中;切换后调用target.run方法,调用结束后（target即结束),将执行流切换至target->parent,即当greenlet结束时,控制流会切换至父greenlet

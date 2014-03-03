@@ -36,7 +36,7 @@ str解码成unicode:
 str.decode(encoding) => unicode            
 unicode编码为特定编码的str:       
 unicode.encode(encoding) => str   
-如果参数encoding省略，将默认使用ASICC编码。
+如果参数encoding省略，将默认使用sys.getdefaultencoding()返回的编码。
 
 **文件处理**
 
@@ -49,8 +49,18 @@ unicode.encode(encoding) => str
 
     当os.walk，os.listdir等方法接收的参数是unicode的码值时，返回的结果也是unicode码值；如果接受的参数是具体的编码时，返回的结果也以具体的编码表示。
 
+**print unicode**:
+
+当sys.stdout.encoding 不为None时，以此编码为依据编码unicode然后输出；如果为None时，则以sys.getdefaultencoding()(ASICC)方式将unicode编码输出；
+
+sys.stodut.encoding编码的选择与shell环境相关，当标准输出为终端时，一般是环境变量$LC_CTYPE，当标准输出为文件时，为None。
+
+Shell环境的编码与终端的编码是两回事，前者是sys.stdout.encoding取值的依据，后者只在显示结果的时候起作用。
+
 
 **参考**
 
 [The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)](http://www.joelonsoftware.com/articles/Unicode.html)
+
+[关于print sys.stdout.encoding 最让我信服的解释](http://stackoverflow.com/a/21968640/1392872)
 

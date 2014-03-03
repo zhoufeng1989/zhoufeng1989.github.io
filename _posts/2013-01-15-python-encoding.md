@@ -55,6 +55,8 @@ unicode.encode(encoding) => str
 
 sys.stodut.encoding编码的选择与shell环境相关，当标准输出为终端时，一般是环境变量$LC_CTYPE，当标准输出为文件时，为None。
 
+当设置环境变量PYTHONENCODING时，stdin/stdout/stderr的encoding由该环境变量决定。
+
 Shell环境的编码与终端的编码是两回事，前者是sys.stdout.encoding取值的依据，后者只在显示结果的时候起作用。
 
 

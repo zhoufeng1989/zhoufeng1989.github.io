@@ -50,4 +50,3 @@ from X import spam #(3)
 **package**
 
 package是一个目录，里面有一个\_\_init\_\_.py文件，当导入package时，\_\_init\_\_.py在package的名字空间下被执行。
-

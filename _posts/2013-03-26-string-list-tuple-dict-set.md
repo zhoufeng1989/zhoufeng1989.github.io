@@ -1,104 +1,148 @@
 ---
 layout: post
-title: Python 中 str, list, tuple, dict, set 的一些技巧
+title: Python内置数据类型相关
 tags: [Python]
 ---
-**integer**
+**数字类型**
 
-+   integer padding 显示
-{% highlight python %}
-x = 4
-print '%03d' % x # 004
-print"{0:03d}".format(4) # 004
-{% endhighlight %}
+较常用的数字类型有整数（int），长整型（long），浮点类型（float）
 
 +   int 和 long   
 
-int由c语言中的long实现，至少32位，具体范围由机器决定；long的范围是unlimited。
+int由c语言中的long实现，至少32位，具体范围由机器决定；long的取值没有限制。
 
++   float
 
-**str**  
+float 相当于c语言里面的double类型，当进行财务方面的计算时，应该用decimal
 
-+   str是iterable类型
 {% highlight python %}
-for i in 'abc':
-    print i
+a = 4.2
+b = 2.1
+a + b  # 6.300000000000001
+# These errors are a “feature” of the underlying CPU and the IEEE 754
+# arithmetic performed by its floating-point unit.
+# Since Python’s float data type stores data using the native representation,
+# there’s nothing you can do to avoid such errors if you write your code  using float instances.
+from decimal import Decimal
+a = Decimal('4.2')
+b = Decimal('2.1')
+a + b  # 6.3
 {% endhighlight %}
 
-+   支持切片
+**sequence类型**
+
+sequence类型包括 str,unicode,list,tuple等
+
+sequence类型支持切片操作
 {% highlight python %}
 x = 'abcdefg'
 x[1::3] # 'be'
 x[::-1] # 倒序字符串
+
+x = [1, 2, 3, 4]
+x[1::2]  # 2, 4
+x[::-1]  
+x.reverse() # 倒序元素，直接原地改变x的值，而不产生拷贝
+
+# 可以命名一个切片，程序可读性更好
+slice_name = slice(2, 3)
+l1 = [1, 2, 3, 4]
+l1[slice_name]  # l1[2:3]
+
+a = slice(5, 10, 2)
+s = 'HelloWorld'  # a.indices return a tuple (start, stop, step)
+for i in xrange(*a.indices(len(s))):
+    print s[i]      # W r d
+# 对列表的slice赋值，会更改原列表
+x = [1, 2, 3, 4]
+x[1:2] = [10, 11, 12]
+print x  # x=[1,10,11,12,3,4]
 {% endhighlight %}
 
-+   连接（join）
-连接list/tuple的元素时，用join，而不是循环：
+需要注意的是，str和list的切片都返回一个新的对象，而原有的对象不发生改变；同时，list还支持reverse等可以改变自身的方法，而str就没有，因为str是不可变的，而list是可变的。
 
+可以将sequence解包(unpack)到多个变量中，其实解包操作适用于所有可遍历对象(files,strings,iterators,generators)。
 {% highlight python %}
-x = ['a', 'b', 'c']
-result = ''
-# 每次连接都有内存的重新分配，影响效率
-for i in x:
-    result += i
-# join
-result = ''.join(x)
+# unpack from str
+_, x, y, _ = 'abcd'  # x=='b', y=='c'
+
+# unpack from list and tuple
+_, x, y, (a, b, c) = [1, 2, 3, (4, 5, 6)]  # x==2,y==3,a=4,b=5,c=6
+
+# unpack from generators
+def gen_func():
+    yield 1
+    yield 2
+    yield 3
+x, y, _ = gen_func() # x=1, y=2
 {% endhighlight %}
 
-+   string padding
-{% highlight python %}
-x = '4'
-print x.zfill(3)  #'004'
-{% endhighlight %}
++   str
 
-+   startswith/endswith    
-第一个参数(prefix/suffix)接受元组作为参数，如果满足prefix/suffix是元组中的任一元素，就返回True
-第二个参数（start）和第三个参数（end）可选，用来确定测试的位置
+    连接（join）
+
+        连接list/tuple的元素时，用join，而不是循环：
+
+                {% highlight python %}
+                x = ['a', 'b', 'c']
+                result = ''
+                # 每次连接都有内存的重新分配，影响效率
+                for i in x:
+                    result += i
+                # join
+                result = ''.join(x)
+                {% endhighlight %}                      
+
+
+    string padding            
+
+                {% highlight python %}
+                x = '4'
+                print x.zfill(3)  #'004'
+                {% endhighlight %}
+
+    startswith/endswith    
+
+    第一个参数(prefix/suffix)接受元组作为参数，如果满足prefix/suffix是元组中的任一元素，就返回True
+    第二个参数（start）和第三个参数（end）可选，用来确定测试的位置
 
 {% highlight python %}
 'abc'.startswith(('a', 'b')) # True
 'abcdef'.statswith('c', 2) # True
 {% endhighlight %}
 
-+   maketrans/translate     
+    maketrans/translate     
+
 maketrans创建一个字符翻译表(映射表),translate根据翻译表翻译字符串。      
 translate(table,[delete_chars]) 会先删除原字符串中包含的[delete_chars]，然后再根据table进行翻译，当table为None时,只做删除操作.
 {% highlight python %}
-table = str.maketrans(
+import string
+table = string.maketrans(
     string.ascii_lowercase, string.ascii_lowercase[2:] + string.ascii_lowercase[:2])
 # 源字符串去掉'xy'后，进行映射
 string.translate('abcxyz', table, 'xy') # 'cdeb'
 {% endhighlight %}
 
 
++   list
 
+enumerate
 
-**list**
-
-+   和str一样，支持切片操作，第三个参数表示步长
-{% highlight python %}
-x = [1, 2, 3, 4]
-x[1::2]  # 2, 4
-x[::-1]  # 倒序元素 [4, 3, 2, 1]
-x.reverse() # 倒序元素，直接原地改变x的值，而不产生拷贝
-{% endhighlight %}
-
-需要注意的是，str和list的切片都返回一个新的对象，而原有的对象不发生改变；同时，list还支持reverse等可以改变自身的方法，而str就没有，因为str是不可变的，而list是可变的。
-
-+   enumerate
 在遍历list时，用到index时用到。
 
 
-**tuple**
++   tuple
 
-+   tuple通过逗号构造，而不是括号
+tuple通过逗号构造，而不是括号   
 {% highlight python %}
 In:  1,
 Out: (1,)
 In:  1, 2
 Out: (1, 2)
 {% endhighlight %}
-    不过为了直观，还是加上括号较好。创建元素多于一个的元组，尾部的逗号可以省略，但是创建单个元素的元组时，不可被省略。
+不过为了直观，还是加上括号较好。
+
+创建元素多于一个的元组，尾部的逗号可以省略，但是创建单个元素的元组时，不可被省略。
 {% highlight python %}
 In:  (1,)
 Out: (1,)

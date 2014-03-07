@@ -69,12 +69,20 @@ is handled.
 In while, the loop executes as long as the condition is true;     
 in until, it runs as long as the condition is false.
 
-分行打印$PATH各路径
 {% highlight bash %}
+# 分行打印$PATH各路径
 path=$PATH:
 while [ $path ]
 do
     echo ${path%%:*}
     path=${path#*:}
 done
-{% endhighlight %}
+
+
+#以命令返回状态作为判断条件
+n=0
+while ! mkdir dir$n
+do
+    n=$((n+1))
+done
+{% highlight python %}

@@ -57,6 +57,30 @@ while True:
 {% endhighlight %}
 明显简洁了很多。
 
+**iter的一个技巧**
+
+除了 iter(collection)这种方式外，iter还可以 iter(callable, sentinel)这么调用，直到callable返回sentinel时，停止对callable的调用
+    
+{% highlight python %}
+# iter(callable, sentinel),
+# the callable is called until it returns the sentinel
+CHUNKSIZE = 8192
+
+
+def reader(s):
+    while True:
+        data = s.recv(CHUNKSIZE)
+        if data == b'':
+            break
+        #process_data(data)
+
+
+def reader2(s):
+    for chunk in iter(lambda: s.recv(CHUNKSIZE), b''):
+        pass
+        #process_data(chunk)
+{% endhighlight %}
+
 **generator expression**  
 
 generator expression 返回的结果是generator对象，该对象实现了iterator protocol。

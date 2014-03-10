@@ -85,4 +85,4 @@ while ! mkdir dir$n
 do
     n=$((n+1))
 done
-{% highlight python %}
+{% endhighlight %}

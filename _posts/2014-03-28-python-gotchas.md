@@ -6,7 +6,7 @@ tags: [Python]
 
 1.  **函数的mutable类型默认参数**
 
-```
+{% highlight python %}
 def append_list(element, l=[]):
     l.append(element)
     return l
@@ -14,30 +14,30 @@ def append_list(element, l=[]):
 l1 = append_list(2)
 # l2 == [2, 20]
 l2 = append_list(20)
-```
+{% endhighlight %}
 
 函数的默认参数在函数定义时求值，而不是在调用函数的时候求值
 
 解决方法
 
-```
+{% highlight python %}
 def append_list(element, l=None):
     if l is None:
         l = []
     l.append(element)
     return l
-```
+{% endhighlight %}
 
 2.  **赋值求值顺序**
 
-```
+{% highlight python %}
 it = iter([1, 2, 3, 4])
 d = {}
 # d == {2: 1}
 d[it.next()] = it.next()
 # d == {2: 1, 3: 4}
 d.__setitem__(it.next(), it.next())
-```
+{% endhighlight %}
 
 赋值求值顺序是先右边的表达式(expression)，然后是赋值目标(target)；函数调用参数的求值顺序自左而右
 
@@ -59,7 +59,7 @@ for adder in adds():
 
 上面的闭包相当于
 
-{%highlight python %}
+{% highlight python %}
 def adds():
     l = []
     for i in xrange(5)；
@@ -90,7 +90,7 @@ def adds():
 
 +   generator comprehension 求值时机
 
-{% hightlight python %}
+{% highlight python %}
 x = ['a', 'b']
 y = ['c', 'd']
 gen = (a + b for a in x for b in y)

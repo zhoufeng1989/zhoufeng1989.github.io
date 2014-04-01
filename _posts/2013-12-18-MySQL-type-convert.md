@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MySQL type convert when compare string and integer
+title: MySQL字符串与整数比较的隐式转换
 tags: [MySQL]
 ---
 以下在MySQL5.0版本适用，其他版本没有验证。

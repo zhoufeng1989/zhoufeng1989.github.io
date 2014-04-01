@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 解析 greenlet
+title: greenlet解析
 tags: [Python]
 ---
 [greenlet](http://greenlet.readthedocs.org)是Python的协程，通过各协程之间的切换，实现并发逻辑。

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What every web developer must know about URL encoding(翻译)
+title: Url encoding注意事项(翻译选摘)
 tags: [Linux Shell]
 ---
 

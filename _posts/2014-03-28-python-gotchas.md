@@ -88,7 +88,14 @@ def adds():
     return [partial(lambda x,i :x + i,  i) for i in range(5)] 
 {% endhighlight %}
 
-+   generator comprehension 求值时机
++   generator
+
+{% highlight python %}
+def adds():
+    return (lambda x: x + i for i in xrange(5))
+{% endhighlight %}
+
+4.  **generator comprehension 求值时机**
 
 {% highlight python %}
 x = ['a', 'b']
@@ -103,7 +110,7 @@ print list(gen)
 
 >Variables used in the generator expression are evaluated lazily when the __next__() method is called for generator object (in the same fashion as normal generators). However, the leftmost for clause is immediately evaluated, so that an error produced by it can be seen before any other possible error in the code that handles the generator expression. Subsequent for clauses cannot be evaluated immediately since they may depend on the previous for loop. For example: (x*y for x in range(10) for y in bar(x)).
 
-+   a+=b 和 a = a+b
+5.  **a+=b 和 a = a+b**
 
 在Python中，赋值操作实质是名字和对象的重新绑定
 
@@ -122,6 +129,24 @@ y += 2
 y = y + 2
 {% endhighlight %}
 
+6.  **UnboundLocalError**
+
+{% highlight python %}
+var = 'global'
+def my_func():
+    print var
+    var = 'local'
+# throw UnboundLocalError!
+my_func()
+
+def my_func2():
+    # var = var + ' local'
+    var += ' local'
+# throw UnboundLocalError !
+my_func2()
+{% endhighlight %}
+
+可见，Python在确定变量引用的对象时，也不是逐行扫描的，而是整块考虑
 
 **参考**
 

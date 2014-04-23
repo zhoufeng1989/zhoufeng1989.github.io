@@ -30,14 +30,14 @@ def append_list(element, l=None):
 
 +   **赋值求值顺序**
 
-{% highlight python %}
-it = iter([1, 2, 3, 4])
-d = {}
-# d == {2: 1}
-d[it.next()] = it.next()
-# d == {2: 1, 3: 4}
-d.__setitem__(it.next(), it.next())
-{% endhighlight %}
+    {% highlight python %}
+    it = iter([1, 2, 3, 4])
+    d = {}
+    # d == {2: 1}
+    d[it.next()] = it.next()
+    # d == {2: 1, 3: 4}
+    d.__setitem__(it.next(), it.next())
+    {% endhighlight %}
 
 赋值求值顺序是先右边的表达式(expression)，然后是赋值目标(target)；函数调用参数的求值顺序自左而右
 

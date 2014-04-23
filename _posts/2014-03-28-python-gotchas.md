@@ -4,7 +4,7 @@ title: Python中的一些“坑”
 tags: [Python]
 ---
 
-+   **函数的mutable类型默认参数**
+**函数的mutable类型默认参数**
 
 {% highlight python %}
 def append_list(element, l=[]):
@@ -28,7 +28,7 @@ def append_list(element, l=None):
     return l
 {% endhighlight %}
 
-+   **赋值求值顺序**
+**赋值求值顺序**
 
     {% highlight python %}
     it = iter([1, 2, 3, 4])
@@ -41,7 +41,7 @@ def append_list(element, l=None):
 
 赋值求值顺序是先右边的表达式(expression)，然后是赋值目标(target)；函数调用参数的求值顺序自左而右
 
-+   **闭包执行时绑定外部变量**
+**闭包执行时绑定外部变量**
 
 {% highlight python %}
 def adds():
@@ -95,7 +95,7 @@ def adds():
         return (lambda x: x + i for i in xrange(5))
     {% endhighlight %}
 
-+   **generator comprehension 求值时机**
+**generator comprehension 求值时机**
 
 {% highlight python %}
 x = ['a', 'b']
@@ -110,7 +110,7 @@ print list(gen)
 
 >Variables used in the generator expression are evaluated lazily when the __next__() method is called for generator object (in the same fashion as normal generators). However, the leftmost for clause is immediately evaluated, so that an error produced by it can be seen before any other possible error in the code that handles the generator expression. Subsequent for clauses cannot be evaluated immediately since they may depend on the previous for loop. For example: (x*y for x in range(10) for y in bar(x)).
 
-+   **a+=b 和 a = a+b**
+**a+=b 和 a = a+b**
 
 在Python中，赋值操作实质是名字和对象的重新绑定
 
@@ -129,7 +129,7 @@ y += 2
 y = y + 2
 {% endhighlight %}
 
-+   **UnboundLocalError**
+**UnboundLocalError**
 
 {% highlight python %}
 var = 'global'

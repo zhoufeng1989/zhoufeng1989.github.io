@@ -73,14 +73,14 @@ def adds():
 
 解决方法
 
-    +   设置默认值
++   设置默认值
 
     {% highlight python %}
     def adds():
         return [lambda x, i=i: x + i for i in xrange(5)]
     {% endhighlight %}
 
-    +   partial function
++   partial function
 
     {% highlight python %}
     from functools import partial
@@ -88,7 +88,7 @@ def adds():
         return [partial(lambda x,i :x + i,  i) for i in range(5)] 
     {% endhighlight %}
 
-    +   generator
++   generator
 
     {% highlight python %}
     def adds():

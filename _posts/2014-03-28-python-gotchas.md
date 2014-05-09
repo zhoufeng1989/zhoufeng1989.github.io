@@ -148,6 +148,19 @@ my_func2()
 
 可见，Python在确定变量引用的对象时，也不是逐行扫描的，而是整块考虑
 
+
+**catch multiple exceptions**
+
+{% highlight python %}
+# throw IndexError
+l = [1, 2]
+try:
+    l[2]
+except ValueError, IndexError:
+    pass
+{% endhighlight %}
+
+catch 多个异常时，应该加上括号。
 **参考**
 
 [Surprising Python](http://ballingt.com/2014/03/23/surprising-python.html)
